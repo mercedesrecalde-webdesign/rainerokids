@@ -743,12 +743,12 @@ const SUPABASE_URL = 'https://dukgjrhyhyxvdqzhthje.supabase.co'; // ej: https://
 const SUPABASE_ANON_KEY = 'sb_publishable_hdrC91CO7zGc3uoO2MsMVA_6K_CQmgd';
 
 // Inicializar Supabase (si está configurado)
-let supabase = null;
+let db = null;
 let isSupabaseConfigured = false;
 
 if (SUPABASE_URL !== 'TU_SUPABASE_URL' && SUPABASE_ANON_KEY !== 'TU_SUPABASE_ANON_KEY') {
   try {
-    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     isSupabaseConfigured = true;
     console.log('✅ Supabase conectado');
   } catch (e) {
@@ -836,7 +836,7 @@ async function initApp(type){
 async function loadRecipes(){
   if(isSupabaseConfigured){
     try{
-      const{data,error}=await supabase.from('recipes').select('*,recipe_ingredients(*),recipe_steps(*)').eq('is_published',true).order('created_at',{ascending:false});
+      const{data,error}=await db.from('recipes').select('*,recipe_ingredients(*),recipe_steps(*)').eq('is_published',true).order('created_at',{ascending:false});
       if(!error&&data){
         localRecipes=data.map(r=>({
           ...r,
@@ -1034,30 +1034,30 @@ async function saveRecipe(){
     try{
       if(editingRecipeId){
         // Update
-        const{error}=await supabase.from('recipes').update({title,description,time_minutes:time,difficulty,points,emoji,category,target_audience:audience,updated_at:new Date().toISOString()}).eq('id',editingRecipeId);
+        const{error}=await db.from('recipes').update({title,description,time_minutes:time,difficulty,points,emoji,category,target_audience:audience,updated_at:new Date().toISOString()}).eq('id',editingRecipeId);
         if(error)throw error;
         // Update ingredients
-        await supabase.from('recipe_ingredients').delete().eq('recipe_id',editingRecipeId);
+        await db.from('recipe_ingredients').delete().eq('recipe_id',editingRecipeId);
         for(let i=0;i<ingredients.length;i++){
-          await supabase.from('recipe_ingredients').insert({recipe_id:editingRecipeId,ingredient:ingredients[i],order_index:i});
+          await db.from('recipe_ingredients').insert({recipe_id:editingRecipeId,ingredient:ingredients[i],order_index:i});
         }
         // Update steps
-        await supabase.from('recipe_steps').delete().eq('recipe_id',editingRecipeId);
+        await db.from('recipe_steps').delete().eq('recipe_id',editingRecipeId);
         for(let i=0;i<steps.length;i++){
-          await supabase.from('recipe_steps').insert({recipe_id:editingRecipeId,step_number:i+1,instruction:steps[i]});
+          await db.from('recipe_steps').insert({recipe_id:editingRecipeId,step_number:i+1,instruction:steps[i]});
         }
         showToast('✅ Receta actualizada');
       }else{
         // Insert
-        const{data,error}=await supabase.from('recipes').insert({title,description,time_minutes:time,difficulty,points,emoji,category,target_audience:audience}).select().single();
+        const{data,error}=await db.from('recipes').insert({title,description,time_minutes:time,difficulty,points,emoji,category,target_audience:audience}).select().single();
         if(error)throw error;
         // Insert ingredients
         for(let i=0;i<ingredients.length;i++){
-          await supabase.from('recipe_ingredients').insert({recipe_id:data.id,ingredient:ingredients[i],order_index:i});
+          await db.from('recipe_ingredients').insert({recipe_id:data.id,ingredient:ingredients[i],order_index:i});
         }
         // Insert steps
         for(let i=0;i<steps.length;i++){
-          await supabase.from('recipe_steps').insert({recipe_id:data.id,step_number:i+1,instruction:steps[i]});
+          await db.from('recipe_steps').insert({recipe_id:data.id,step_number:i+1,instruction:steps[i]});
         }
         showToast('✅ Receta guardada en Supabase');
       }
