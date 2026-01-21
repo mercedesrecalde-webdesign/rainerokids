@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>RAINERO KIDS - Culinaria 4.0</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <meta name="theme-color" content="#7B2D8E">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    
+    :root{
+      /* Paleta Vicente López */
+      --violet:#7B2D8E;
+      --violet-light:#9B4DB8;
+      --violet-dark:#5A1F6A;
+      --green:#7AB929;
+      --green-light:#9AD649;
+      --teal:#00A19A;
+      --teal-light:#00C4BC;
+      --blue:#0088CC;
+      
+      /* Gradientes */
+      --grad-main:linear-gradient(135deg,#7B2D8E 0%,#00A19A 50%,#7AB929 100%);
+      --grad-violet:linear-gradient(135deg,#7B2D8E,#9B4DB8);
+      --grad-teal:linear-gradient(135deg,#00A19A,#00C4BC);
+      --grad-green:linear-gradient(135deg,#7AB929,#9AD649);
+      --grad-teens:linear-gradient(135deg,#1a1a2e,#16213e);
+      --grad-glass:linear-gradient(135deg,rgba(255,255,255,0.9),rgba(255,255,255,0.7));
+      
+      /* UI */
+      --bg:#F8FAFC;
+      --card:#FFFFFF;
+      --text:#1E293B;
+      --text-secondary:#64748B;
+      --border:#E2E8F0;
+      --shadow-sm:0 1px 3px rgba(0,0,0,0.08);
+      --shadow:0 4px 20px rgba(123,45,142,0.1);
+      --shadow-lg:0 12px 40px rgba(123,45,142,0.15);
+      --shadow-xl:0 25px 60px rgba(123,45,142,0.2);
+      
+      --radius-sm:8px;
+      --radius:12px;
+      --radius-lg:16px;
+      --radius-xl:24px;
+      --radius-full:9999px;
+      
+      --transition:all 0.2s ease;
+      --transition-slow:all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    
+    body{
+      font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+    }
+    
+    h1,h2,h3{font-family:'Fredoka',sans-serif;font-weight:600}
+    .hidden{display:none!important}
+    
+    /* ========== SPLASH / PORTAL ========== */
+    .portal{
+      min-height:100vh;
+      background:var(--grad-main);
+      display:flex;
+      flex-direction:column;
+      position:relative;
+      overflow:hidden;
+    }
+    
+    .portal::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L35 15L45 17L38 25L40 35L30 30L20 35L22 25L15 17L25 15L30 5Z' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/svg%3E");
+      pointer-events:none;
+    }
+    
+    .portal-header{
+      padding:16px 20px;
+      display:flex;
+      justify-content:flex-end;
+      position:relative;
+      z-index:10;
+    }
+    
+    .mvl-badge{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(255,255,255,0.95);
+      padding:8px 16px;
+      border-radius:var(--radius-full);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+    }
+    
+    .mvl-badge img{
+      height:28px;
+      width:auto;
+    }
+    
+    .portal-content{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      position:relative;
+      z-index:10;
+    }
+    
+    .logo-hero{
+      width:160px;
+      height:160px;
+      border-radius:50%;
+      object-fit:cover;
+      box-shadow:var(--shadow-xl);
+      margin-bottom:24px;
+      animation:float 4s ease-in-out infinite;
+      border:4px solid rgba(255,255,255,0.3);
+    }
+    
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-12px)}
+    }
+    
+    .portal-title{
+      text-align:center;
+      color:white;
+      margin-bottom:32px;
+    }
+    
+    .portal-title h1{
+      font-size:2.5rem;
+      font-weight:700;
+      margin-bottom:4px;
+      text-shadow:0 2px 20px rgba(0,0,0,0.2);
+    }
+    
+    .portal-title p{
+      font-size:1.1rem;
+      opacity:0.9;
+      font-weight:500;
+    }
+    
+    .portal-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+      max-width:400px;
+      width:100%;
+    }
+    
+    .portal-btn{
+      background:rgba(255,255,255,0.95);
+      backdrop-filter:blur(10px);
+      border-radius:var(--radius-xl);
+      padding:24px 16px;
+      text-align:center;
+      cursor:pointer;
+      transition:var(--transition-slow);
+      border:none;
+      box-shadow:var(--shadow);
+    }
+    
+    .portal-btn:hover{
+      transform:translateY(-4px);
+      box-shadow:var(--shadow-xl);
+    }
+    
+    .portal-btn:active{transform:scale(0.98)}
+    
+    .portal-btn-icon{
+      width:56px;
+      height:56px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.8rem;
+      margin:0 auto 12px;
+    }
+    
+    .portal-btn.kids .portal-btn-icon{background:linear-gradient(135deg,#E8F5E9,#C8E6C9)}
+    .portal-btn.teens .portal-btn-icon{background:linear-gradient(135deg,#EDE7F6,#D1C4E9)}
+    .portal-btn.parents .portal-btn-icon{background:linear-gradient(135deg,#E0F7FA,#B2EBF2)}
+    .portal-btn.docente .portal-btn-icon{background:linear-gradient(135deg,#FFF3E0,#FFE0B2)}
+    
+    .portal-btn h3{
+      font-size:1rem;
+      color:var(--text);
+      margin-bottom:4px;
+    }
+    
+    .portal-btn span{
+      font-size:0.75rem;
+      color:var(--text-secondary);
+      font-weight:500;
+    }
+    
+    .portal-footer{
+      padding:20px;
+      text-align:center;
+      position:relative;
+      z-index:10;
+    }
+    
+    .portal-footer p{
+      color:rgba(255,255,255,0.8);
+      font-size:0.8rem;
+      font-weight:500;
+    }
+    
+    /* ========== LOGIN ========== */
+    .login{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background:var(--bg);
+    }
+    
+    .login.kids{background:linear-gradient(135deg,#F0FDF4,#ECFDF5)}
+    .login.teens{background:var(--grad-teens)}
+    .login.parents{background:linear-gradient(135deg,#F0FDFA,#ECFEFF)}
+    .login.docente{background:linear-gradient(135deg,#FFFBEB,#FEF3C7)}
+    
+    .login-card{
+      background:var(--card);
+      border-radius:var(--radius-xl);
+      padding:32px;
+      width:100%;
+      max-width:380px;
+      box-shadow:var(--shadow-lg);
+    }
+    
+    .login-header{
+      text-align:center;
+      margin-bottom:28px;
+    }
+    
+    .login-logo{
+      width:80px;
+      height:80px;
+      border-radius:50%;
+      object-fit:cover;
+      margin-bottom:16px;
+      box-shadow:var(--shadow);
+    }
+    
+    .login-header h2{
+      font-size:1.5rem;
+      margin-bottom:4px;
+    }
+    
+    .login.kids .login-header h2{color:var(--green)}
+    .login.teens .login-header h2{color:var(--violet)}
+    .login.parents .login-header h2{color:var(--teal)}
+    .login.docente .login-header h2{color:#D97706}
+    
+    .login-header p{
+      color:var(--text-secondary);
+      font-size:0.9rem;
+    }
+    
+    .form-group{
+      margin-bottom:16px;
+    }
+    
+    .form-group label{
+      display:block;
+      font-size:0.85rem;
+      font-weight:600;
+      color:var(--text);
+      margin-bottom:6px;
+    }
+    
+    .form-group input{
+      width:100%;
+      padding:12px 16px;
+      border:2px solid var(--border);
+      border-radius:var(--radius);
+      font-size:1rem;
+      font-family:inherit;
+      transition:var(--transition);
+      background:var(--bg);
+    }
+    
+    .form-group input:focus{
+      outline:none;
+      border-color:var(--violet);
+      background:white;
+    }
+    
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:14px 24px;
+      border-radius:var(--radius);
+      font-size:1rem;
+      font-weight:600;
+      font-family:inherit;
+      cursor:pointer;
+      transition:var(--transition);
+      border:none;
+      width:100%;
+    }
+    
+    .btn-primary{
+      background:var(--grad-violet);
+      color:white;
+      box-shadow:0 4px 15px rgba(123,45,142,0.3);
+    }
+    
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 6px 20px rgba(123,45,142,0.4);
+    }
+    
+    .btn-kids{background:var(--grad-green);box-shadow:0 4px 15px rgba(122,185,41,0.3)}
+    .btn-teens{background:var(--grad-violet)}
+    .btn-parents{background:var(--grad-teal);box-shadow:0 4px 15px rgba(0,161,154,0.3)}
+    .btn-docente{background:linear-gradient(135deg,#F59E0B,#D97706);box-shadow:0 4px 15px rgba(217,119,6,0.3)}
+    
+    .back-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      margin-top:20px;
+      color:var(--text-secondary);
+      font-size:0.9rem;
+      font-weight:500;
+      cursor:pointer;
+      transition:var(--transition);
+      background:none;
+      border:none;
+      width:100%;
+      padding:8px;
+    }
+    
+    .back-btn:hover{color:var(--violet)}
+
+    /* ========== APP SHELL ========== */
+    .app{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      background:var(--bg);
+      padding-bottom:72px;
+    }
+    
+    .app.teens{background:#0F172A;color:white}
+    
+    .app-header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      padding:12px 16px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      background:white;
+      border-bottom:1px solid var(--border);
+    }
+    
+    .app.teens .app-header{
+      background:rgba(15,23,42,0.95);
+      border-color:rgba(255,255,255,0.1);
+      backdrop-filter:blur(10px);
+    }
+    
+    .header-back{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--bg);
+      border:none;
+      cursor:pointer;
+      font-size:1.2rem;
+      transition:var(--transition);
+      flex-shrink:0;
+    }
+    
+    .header-back:hover{background:var(--border)}
+    .app.teens .header-back{background:rgba(255,255,255,0.1);color:white}
+    
+    .header-logo{
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      object-fit:cover;
+      flex-shrink:0;
+    }
+    
+    .header-title{
+      flex:1;
+      font-size:1.1rem;
+      font-weight:600;
+    }
+    
+    .app.teens .header-title{
+      background:linear-gradient(90deg,#00CEC9,#7AB929);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    
+    .header-points{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      padding:8px 14px;
+      background:var(--bg);
+      border-radius:var(--radius-full);
+      font-weight:700;
+      font-size:0.9rem;
+    }
+    
+    .app.teens .header-points{background:rgba(0,206,201,0.15);color:#00CEC9}
+    
+    .header-avatar{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      background:var(--grad-violet);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.1rem;
+      cursor:pointer;
+      transition:var(--transition);
+    }
+    
+    .header-avatar:hover{transform:scale(1.05)}
+    
+    .app-main{
+      flex:1;
+      padding:16px;
+      max-width:800px;
+      margin:0 auto;
+      width:100%;
+    }
+    
+    .app-nav{
+      position:fixed;
+      bottom:0;
+      left:0;
+      right:0;
+      background:white;
+      border-top:1px solid var(--border);
+      padding:8px 16px;
+      display:flex;
+      justify-content:space-around;
+      z-index:100;
+    }
+    
+    .app.teens .app-nav{
+      background:rgba(15,23,42,0.98);
+      border-color:rgba(255,255,255,0.1);
+    }
+    
+    .nav-btn{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:2px;
+      padding:8px 16px;
+      border-radius:var(--radius);
+      background:none;
+      border:none;
+      cursor:pointer;
+      color:var(--text-secondary);
+      font-size:0.65rem;
+      font-weight:600;
+      transition:var(--transition);
+    }
+    
+    .nav-btn .icon{font-size:1.4rem}
+    
+    .nav-btn.active{color:var(--violet);background:rgba(123,45,142,0.08)}
+    .app.teens .nav-btn{color:rgba(255,255,255,0.5)}
+    .app.teens .nav-btn.active{color:#00CEC9;background:rgba(0,206,201,0.1)}
+    
+    /* ========== CARDS ========== */
+    .card{
+      background:var(--card);
+      border-radius:var(--radius-lg);
+      padding:20px;
+      box-shadow:var(--shadow-sm);
+      margin-bottom:16px;
+      border:1px solid var(--border);
+    }
+    
+    .app.teens .card{
+      background:rgba(255,255,255,0.05);
+      border-color:rgba(255,255,255,0.1);
+    }
+    
+    /* Welcome Card */
+    .welcome-card{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      background:var(--grad-main);
+      color:white;
+      border:none;
+    }
+    
+    .welcome-avatar{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.2);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:2rem;
+      flex-shrink:0;
+    }
+    
+    .welcome-info h2{
+      font-size:1.3rem;
+      margin-bottom:2px;
+    }
+    
+    .welcome-info p{
+      opacity:0.9;
+      font-size:0.9rem;
+      margin-bottom:8px;
+    }
+    
+    .level-tag{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      background:rgba(255,255,255,0.2);
+      padding:4px 12px;
+      border-radius:var(--radius-full);
+      font-size:0.8rem;
+      font-weight:600;
+    }
+    
+    /* Vicente Tip */
+    .vicente-tip{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      cursor:pointer;
+      transition:var(--transition);
+      border-left:4px solid var(--violet);
+    }
+    
+    .vicente-tip:hover{transform:translateX(4px)}
+    
+    .vicente-tip img{
+      width:56px;
+      height:56px;
+      border-radius:50%;
+      object-fit:cover;
+      flex-shrink:0;
+    }
+    
+    .vicente-tip-content{flex:1}
+    
+    .vicente-tip-label{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      font-size:0.7rem;
+      font-weight:700;
+      color:var(--violet);
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+      margin-bottom:4px;
+    }
+    
+    .vicente-tip h3{
+      font-size:0.95rem;
+      color:var(--text);
+      margin-bottom:2px;
+      font-weight:600;
+    }
+    
+    .vicente-tip p{
+      font-size:0.8rem;
+      color:var(--text-secondary);
+    }
+    
+    .tip-tag{
+      padding:6px 12px;
+      border-radius:var(--radius-full);
+      font-size:0.7rem;
+      font-weight:700;
+      background:#F0FDF4;
+      color:var(--green);
+      white-space:nowrap;
+    }
+    
+    /* Stats */
+    .stats-row{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+      margin-bottom:16px;
+    }
+    
+    .stat-item{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:14px 8px;
+      text-align:center;
+      border:1px solid var(--border);
+    }
+    
+    .app.teens .stat-item{
+      background:rgba(255,255,255,0.05);
+      border-color:rgba(255,255,255,0.1);
+    }
+    
+    .stat-item .icon{font-size:1.6rem;margin-bottom:4px}
+    .stat-item .value{font-size:1.3rem;font-weight:700;color:var(--violet)}
+    .stat-item .label{font-size:0.7rem;color:var(--text-secondary)}
+    .app.teens .stat-item .value{color:#00CEC9}
+    
+    /* Section */
+    .section{margin-bottom:24px}
+    .section-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:12px;
+    }
+    
+    .section-title{
+      font-size:1.1rem;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    
+    .section-link{
+      font-size:0.85rem;
+      color:var(--violet);
+      font-weight:600;
+      cursor:pointer;
+      background:none;
+      border:none;
+    }
+    
+    /* Recipe Grid */
+    .recipe-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+      gap:12px;
+    }
+    
+    .recipe-card{
+      background:var(--card);
+      border-radius:var(--radius-lg);
+      overflow:hidden;
+      cursor:pointer;
+      transition:var(--transition);
+      border:1px solid var(--border);
+    }
+    
+    .recipe-card:hover{
+      transform:translateY(-4px);
+      box-shadow:var(--shadow-lg);
+    }
+    
+    .recipe-img{
+      height:100px;
+      background:var(--grad-teal);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:2.5rem;
+      position:relative;
+    }
+    
+    .recipe-badge{
+      position:absolute;
+      top:8px;
+      right:8px;
+      padding:4px 8px;
+      border-radius:var(--radius-sm);
+      font-size:0.65rem;
+      font-weight:700;
+      color:white;
+    }
+    
+    .recipe-badge.easy{background:var(--green)}
+    .recipe-badge.medium{background:#F59E0B}
+    .recipe-badge.hard{background:#EF4444}
+    
+    .recipe-info{padding:12px}
+    .recipe-info h3{font-size:0.9rem;margin-bottom:4px}
+    .recipe-meta{font-size:0.75rem;color:var(--text-secondary);margin-bottom:8px}
+    .recipe-points{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      font-size:0.8rem;
+      font-weight:700;
+      color:#F59E0B;
+      background:#FFFBEB;
+      padding:4px 10px;
+      border-radius:var(--radius-full);
+    }
+    
+    /* Missions */
+    .mission-list{display:flex;flex-direction:column;gap:10px}
+    
+    .mission-item{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:14px;
+      border:1px solid var(--border);
+      cursor:pointer;
+      transition:var(--transition);
+    }
+    
+    .mission-item:hover{border-color:var(--violet)}
+    
+    .mission-icon{
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.3rem;
+      background:rgba(123,45,142,0.1);
+      flex-shrink:0;
+    }
+    
+    .mission-info{flex:1}
+    .mission-info h4{font-size:0.9rem;margin-bottom:2px}
+    .mission-info p{font-size:0.75rem;color:var(--text-secondary);margin-bottom:6px}
+    
+    .mission-progress{
+      height:4px;
+      background:var(--border);
+      border-radius:var(--radius-full);
+      overflow:hidden;
+    }
+    
+    .mission-progress-fill{
+      height:100%;
+      background:var(--grad-violet);
+      border-radius:var(--radius-full);
+      transition:width 0.5s ease;
+    }
+    
+    .mission-reward{
+      text-align:center;
+    }
+    
+    .mission-reward .pts{
+      font-size:1rem;
+      font-weight:700;
+      color:var(--violet);
+    }
+    
+    .mission-reward .lbl{
+      font-size:0.6rem;
+      color:var(--text-secondary);
+      text-transform:uppercase;
+    }
+    
+    /* Chat */
+    .chat-container{
+      display:flex;
+      flex-direction:column;
+      height:calc(100vh - 140px);
+      background:var(--card);
+      border-radius:var(--radius-xl);
+      overflow:hidden;
+      border:1px solid var(--border);
+    }
+    
+    .chat-header{
+      padding:14px 16px;
+      background:var(--grad-violet);
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:white;
+    }
+    
+    .chat-header img{
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      object-fit:cover;
+      border:2px solid rgba(255,255,255,0.3);
+    }
+    
+    .chat-header-info h3{font-size:1rem}
+    .chat-header-info span{font-size:0.8rem;opacity:0.9}
+    
+    .chat-status{
+      width:10px;
+      height:10px;
+      background:#22C55E;
+      border-radius:50%;
+      margin-left:auto;
+    }
+    
+    .chat-messages{
+      flex:1;
+      padding:16px;
+      overflow-y:auto;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      background:#FAFAFA;
+    }
+    
+    .msg{
+      display:flex;
+      gap:10px;
+      max-width:85%;
+    }
+    
+    .msg.bot{align-self:flex-start}
+    .msg.user{align-self:flex-end;flex-direction:row-reverse}
+    
+    .msg-avatar{
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      flex-shrink:0;
+      object-fit:cover;
+    }
+    
+    .msg.user .msg-avatar{
+      background:var(--grad-teal);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:0.9rem;
+    }
+    
+    .msg-bubble{
+      padding:12px 14px;
+      border-radius:var(--radius-lg);
+      font-size:0.9rem;
+      line-height:1.4;
+    }
+    
+    .msg.bot .msg-bubble{
+      background:white;
+      border:1px solid var(--border);
+      border-bottom-left-radius:4px;
+    }
+    
+    .msg.user .msg-bubble{
+      background:var(--grad-teal);
+      color:white;
+      border-bottom-right-radius:4px;
+    }
+    
+    .msg-tip{
+      background:linear-gradient(135deg,#FFFBEB,#FEF3C7);
+      padding:10px;
+      border-radius:var(--radius-sm);
+      margin-top:8px;
+      border-left:3px solid #F59E0B;
+    }
+    
+    .msg-tip-label{
+      font-size:0.7rem;
+      font-weight:700;
+      color:#D97706;
+      margin-bottom:4px;
+    }
+    
+    .chat-quick{
+      padding:10px 16px;
+      display:flex;
+      gap:8px;
+      overflow-x:auto;
+      border-top:1px solid var(--border);
+      background:white;
+    }
+    
+    .quick-chip{
+      padding:8px 14px;
+      background:var(--bg);
+      border:1px solid var(--border);
+      border-radius:var(--radius-full);
+      font-size:0.8rem;
+      font-weight:500;
+      cursor:pointer;
+      white-space:nowrap;
+      transition:var(--transition);
+    }
+    
+    .quick-chip:hover{
+      background:var(--violet);
+      color:white;
+      border-color:var(--violet);
+    }
+    
+    .chat-input{
+      padding:12px 16px;
+      display:flex;
+      gap:10px;
+      border-top:1px solid var(--border);
+      background:white;
+    }
+    
+    .chat-input input{
+      flex:1;
+      padding:12px 16px;
+      border:1px solid var(--border);
+      border-radius:var(--radius-full);
+      font-size:0.95rem;
+      font-family:inherit;
+      transition:var(--transition);
+    }
+    
+    .chat-input input:focus{
+      outline:none;
+      border-color:var(--violet);
+    }
+    
+    .chat-input button{
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      background:var(--grad-violet);
+      color:white;
+      border:none;
+      font-size:1.1rem;
+      cursor:pointer;
+      transition:var(--transition);
+    }
+    
+    .chat-input button:hover{transform:scale(1.05)}
+    
+    /* Gallery */
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+    }
+    
+    .gallery-item{
+      aspect-ratio:1;
+      border-radius:var(--radius);
+      background:var(--grad-teal);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:2rem;
+      cursor:pointer;
+      transition:var(--transition);
+      overflow:hidden;
+    }
+    
+    .gallery-item:hover{transform:scale(1.03)}
+    
+    .gallery-item.add{
+      background:var(--bg);
+      border:2px dashed var(--border);
+      flex-direction:column;
+      gap:4px;
+      font-size:1rem;
+      color:var(--text-secondary);
+    }
+    
+    .gallery-item.add:hover{
+      border-color:var(--violet);
+      color:var(--violet);
+    }
+    
+    .gallery-item.add .add-icon{font-size:1.5rem}
+    
+    /* Video Grid */
+    .video-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+      gap:12px;
+    }
+    
+    .video-card{
+      background:var(--card);
+      border-radius:var(--radius-lg);
+      overflow:hidden;
+      cursor:pointer;
+      transition:var(--transition);
+      border:1px solid var(--border);
+    }
+    
+    .video-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+    
+    .video-thumb{
+      height:110px;
+      background:var(--grad-violet);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+    
+    .video-play{
+      width:48px;
+      height:48px;
+      background:rgba(255,255,255,0.95);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.2rem;
+      color:var(--violet);
+    }
+    
+    .video-duration{
+      position:absolute;
+      bottom:8px;
+      right:8px;
+      background:rgba(0,0,0,0.7);
+      color:white;
+      padding:3px 8px;
+      border-radius:4px;
+      font-size:0.7rem;
+      font-weight:600;
+    }
+    
+    .video-info{padding:12px}
+    .video-info h3{font-size:0.9rem;margin-bottom:4px}
+    .video-info p{font-size:0.75rem;color:var(--text-secondary)}
+    
+    .video-vicente{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      margin-top:8px;
+      font-size:0.75rem;
+      color:var(--violet);
+      font-weight:600;
+    }
+    
+    .video-vicente img{
+      width:20px;
+      height:20px;
+      border-radius:50%;
+      object-fit:cover;
+    }
+    
+    /* Tabs */
+    .tabs{
+      display:flex;
+      gap:8px;
+      margin-bottom:16px;
+      overflow-x:auto;
+      padding-bottom:4px;
+    }
+    
+    .tab{
+      padding:8px 16px;
+      border-radius:var(--radius-full);
+      background:var(--bg);
+      border:1px solid var(--border);
+      font-size:0.85rem;
+      font-weight:600;
+      cursor:pointer;
+      white-space:nowrap;
+      transition:var(--transition);
+    }
+    
+    .tab.active{
+      background:var(--grad-violet);
+      color:white;
+      border-color:transparent;
+    }
+    
+    /* Vicente Float */
+    .vicente-float{
+      position:fixed;
+      bottom:88px;
+      right:16px;
+      width:56px;
+      height:56px;
+      border-radius:50%;
+      background:white;
+      box-shadow:var(--shadow-lg);
+      cursor:pointer;
+      z-index:90;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:var(--transition);
+      border:3px solid var(--violet);
+    }
+    
+    .vicente-float img{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      object-fit:cover;
+    }
+    
+    .vicente-float:hover{transform:scale(1.1)}
+    
+    .vicente-float .dot{
+      position:absolute;
+      top:-2px;
+      right:-2px;
+      width:14px;
+      height:14px;
+      background:#EF4444;
+      border-radius:50%;
+      border:2px solid white;
+    }
+    
+    /* ========== DOCENTE ========== */
+    .docente-stats{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-bottom:16px;
+    }
+    
+    .docente-stat{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:18px;
+      border:1px solid var(--border);
+    }
+    
+    .docente-stat .icon{font-size:1.8rem;margin-bottom:8px}
+    .docente-stat .value{font-size:1.8rem;font-weight:700;color:var(--violet)}
+    .docente-stat .label{font-size:0.8rem;color:var(--text-secondary)}
+    
+    .action-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-bottom:16px;
+    }
+    
+    .action-btn{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:16px 12px;
+      text-align:center;
+      cursor:pointer;
+      transition:var(--transition);
+      border:1px solid var(--border);
+    }
+    
+    .action-btn:hover{
+      border-color:var(--violet);
+      transform:translateY(-2px);
+    }
+    
+    .action-btn .icon{font-size:1.5rem;margin-bottom:6px}
+    .action-btn span{font-size:0.75rem;font-weight:600;color:var(--text-secondary)}
+    
+    .student-list{display:flex;flex-direction:column;gap:8px}
+    
+    .student-item{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:12px;
+      border:1px solid var(--border);
+      cursor:pointer;
+      transition:var(--transition);
+    }
+    
+    .student-item:hover{border-color:var(--violet)}
+    
+    .student-avatar{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:var(--grad-teal);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.2rem;
+    }
+    
+    .student-info{flex:1}
+    .student-info h4{font-size:0.9rem}
+    .student-info p{font-size:0.75rem;color:var(--text-secondary)}
+    
+    .student-stats{display:flex;gap:12px}
+    .student-stats span{
+      font-size:0.8rem;
+      display:flex;
+      align-items:center;
+      gap:4px;
+    }
+    
+    /* Upload Area */
+    .upload-area{
+      border:2px dashed var(--border);
+      border-radius:var(--radius-lg);
+      padding:40px 20px;
+      text-align:center;
+      cursor:pointer;
+      transition:var(--transition);
+    }
+    
+    .upload-area:hover{
+      border-color:var(--violet);
+      background:rgba(123,45,142,0.02);
+    }
+    
+    .upload-area .icon{font-size:2.5rem;margin-bottom:12px;opacity:0.5}
+    .upload-area p{color:var(--text-secondary);font-size:0.9rem}
+    
+    /* Message List */
+    .message-list{display:flex;flex-direction:column;gap:8px}
+    
+    .message-item{
+      display:flex;
+      gap:12px;
+      padding:12px;
+      background:var(--card);
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      cursor:pointer;
+      transition:var(--transition);
+    }
+    
+    .message-item:hover{background:var(--bg)}
+    .message-item.unread{border-left:3px solid var(--violet)}
+    
+    .message-avatar{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      background:var(--grad-violet);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-size:1rem;
+      flex-shrink:0;
+    }
+    
+    .message-content{flex:1;min-width:0}
+    .message-content h4{font-size:0.9rem;margin-bottom:2px}
+    .message-content p{font-size:0.8rem;color:var(--text-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .message-time{font-size:0.7rem;color:var(--text-secondary);white-space:nowrap}
+    
+    /* Programs */
+    .program-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+      gap:12px;
+    }
+    
+    .program-card{
+      background:var(--card);
+      border-radius:var(--radius-lg);
+      overflow:hidden;
+      border:1px solid var(--border);
+      cursor:pointer;
+      transition:var(--transition);
+    }
+    
+    .program-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+    
+    .program-banner{
+      height:80px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:2rem;
+      position:relative;
+    }
+    
+    .program-banner.summer{background:linear-gradient(135deg,#FCD34D,#F97316)}
+    .program-banner.winter{background:linear-gradient(135deg,#60A5FA,#A78BFA)}
+    
+    .program-tag{
+      position:absolute;
+      top:8px;
+      right:8px;
+      padding:4px 10px;
+      border-radius:var(--radius-full);
+      font-size:0.65rem;
+      font-weight:700;
+      background:rgba(255,255,255,0.9);
+      color:var(--text);
+    }
+    
+    .program-info{padding:14px}
+    .program-info h3{font-size:0.95rem;margin-bottom:4px}
+    .program-info p{font-size:0.8rem;color:var(--text-secondary);margin-bottom:10px}
+    .program-dates{
+      font-size:0.8rem;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      color:var(--text);
+    }
+    
+    /* ========== PARENTS ========== */
+    .child-card{
+      background:var(--card);
+      border-radius:var(--radius-lg);
+      padding:20px;
+      border:1px solid var(--border);
+      margin-bottom:16px;
+    }
+    
+    .child-header{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:16px;
+    }
+    
+    .child-avatar{
+      width:56px;
+      height:56px;
+      border-radius:50%;
+      background:var(--grad-teal);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.8rem;
+    }
+    
+    .child-info h3{font-size:1.1rem;margin-bottom:4px}
+    .child-level{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      background:var(--grad-violet);
+      color:white;
+      padding:4px 10px;
+      border-radius:var(--radius-full);
+      font-size:0.75rem;
+      font-weight:600;
+    }
+    
+    .child-stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+      margin-bottom:16px;
+    }
+    
+    .child-stat{
+      text-align:center;
+      padding:12px 8px;
+      background:var(--bg);
+      border-radius:var(--radius);
+    }
+    
+    .child-stat .value{font-size:1.2rem;font-weight:700;color:var(--teal)}
+    .child-stat .label{font-size:0.7rem;color:var(--text-secondary)}
+    
+    /* ========== RESPONSIVE ========== */
+    @media(max-width:500px){
+      .portal-grid{gap:12px}
+      .portal-btn{padding:20px 12px}
+      .portal-btn-icon{width:48px;height:48px;font-size:1.5rem}
+      .portal-btn h3{font-size:0.9rem}
+      .logo-hero{width:130px;height:130px}
+      .portal-title h1{font-size:2rem}
+      .stats-row{grid-template-columns:repeat(2,1fr)}
+      .child-stats{grid-template-columns:repeat(2,1fr)}
+      .action-grid{grid-template-columns:repeat(2,1fr)}
+      .recipe-grid{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== PORTAL ========== -->
+<div id="portal" class="portal">
+  <header class="portal-header">
+    <div class="mvl-badge">
+      <img src="logo_mvl.png" alt="Vicente López">
+    </div>
+  </header>
+  
+  <main class="portal-content">
+    <img src="logo.png" alt="Rainero Kids" class="logo-hero">
+    
+    <div class="portal-title">
+      <h1>Rainero Kids</h1>
+      <p>Culinaria 4.0</p>
+    </div>
+    
+    <div class="portal-grid">
+      <button class="portal-btn kids" onclick="showLogin('kids')">
+        <div class="portal-btn-icon">👧</div>
+        <h3>Niños</h3>
+        <span>6-11 años</span>
+      </button>
+      
+      <button class="portal-btn teens" onclick="showLogin('teens')">
+        <div class="portal-btn-icon">🧑</div>
+        <h3>Teens</h3>
+        <span>12-17 años</span>
+      </button>
+      
+      <button class="portal-btn parents" onclick="showLogin('parents')">
+        <div class="portal-btn-icon">👨‍👩‍👧</div>
+        <h3>Padres</h3>
+        <span>Portal familiar</span>
+      </button>
+      
+      <button class="portal-btn docente" onclick="showLogin('docente')">
+        <div class="portal-btn-icon">👩‍🏫</div>
+        <h3>Docente</h3>
+        <span>Administración</span>
+      </button>
+    </div>
+  </main>
+  
+  <footer class="portal-footer">
+    <p>Centro Municipal de Capacitación Laboral Santiago Rainero</p>
+  </footer>
+</div>
+
+<!-- ========== LOGINS ========== -->
+<div id="login-kids" class="login kids hidden">
+  <div class="login-card">
+    <div class="login-header">
+      <img src="logo.png" alt="Logo" class="login-logo">
+      <h2>¡Hola Chef!</h2>
+      <p>Vicente te está esperando</p>
+    </div>
+    <div class="form-group">
+      <label>Tu nombre de chef</label>
+      <input type="text" id="kids-user" placeholder="Ej: MartinaCocina">
+    </div>
+    <div class="form-group">
+      <label>Contraseña secreta</label>
+      <input type="password" id="kids-pass" placeholder="••••••">
+    </div>
+    <button class="btn btn-kids" onclick="login('kids')">Entrar a cocinar 🚀</button>
+    <button class="back-btn" onclick="showPortal()">← Volver al inicio</button>
+  </div>
+</div>
+
+<div id="login-teens" class="login teens hidden">
+  <div class="login-card">
+    <div class="login-header">
+      <img src="logo.png" alt="Logo" class="login-logo">
+      <h2>Level Up Chef</h2>
+      <p>Desbloquea nuevos desafíos</p>
+    </div>
+    <div class="form-group">
+      <label>Usuario</label>
+      <input type="text" id="teens-user" placeholder="Tu usuario">
+    </div>
+    <div class="form-group">
+      <label>Contraseña</label>
+      <input type="password" id="teens-pass" placeholder="••••••">
+    </div>
+    <button class="btn btn-teens" onclick="login('teens')">Ingresar 🎮</button>
+    <button class="back-btn" onclick="showPortal()">← Volver al inicio</button>
+  </div>
+</div>
+
+<div id="login-parents" class="login parents hidden">
+  <div class="login-card">
+    <div class="login-header">
+      <img src="logo.png" alt="Logo" class="login-logo">
+      <h2>Portal de Padres</h2>
+      <p>Seguí el progreso de tus hijos</p>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" id="parents-email" placeholder="tu@email.com">
+    </div>
+    <div class="form-group">
+      <label>Contraseña</label>
+      <input type="password" id="parents-pass" placeholder="••••••">
+    </div>
+    <button class="btn btn-parents" onclick="login('parents')">Ingresar</button>
+    <button class="back-btn" onclick="showPortal()">← Volver al inicio</button>
+  </div>
+</div>
+
+<div id="login-docente" class="login docente hidden">
+  <div class="login-card">
+    <div class="login-header">
+      <img src="logo.png" alt="Logo" class="login-logo">
+      <h2>Portal Docente</h2>
+      <p>Gestión y administración</p>
+    </div>
+    <div class="form-group">
+      <label>Email institucional</label>
+      <input type="email" id="docente-email" placeholder="profe@rainero.edu">
+    </div>
+    <div class="form-group">
+      <label>Contraseña</label>
+      <input type="password" id="docente-pass" placeholder="••••••">
+    </div>
+    <button class="btn btn-docente" onclick="login('docente')">Ingresar al panel</button>
+    <button class="back-btn" onclick="showPortal()">← Volver al inicio</button>
+  </div>
+</div>
+
+<!-- ========== KIDS APP ========== -->
+<div id="app-kids" class="app hidden">
+  <header class="app-header">
+    <button class="header-back" onclick="showPortal()">←</button>
+    <img src="logo.png" alt="Logo" class="header-logo">
+    <h1 class="header-title">Rainero Kids</h1>
+    <div class="header-points">⭐ <span id="kids-pts">1,250</span></div>
+    <div class="header-avatar">🧑‍🍳</div>
+  </header>
+  
+  <main class="app-main">
+    <div class="card vicente-tip" onclick="showView('kids','chat')">
+      <img src="vicente_celu.jpg" alt="Vicente">
+      <div class="vicente-tip-content">
+        <div class="vicente-tip-label">💬 Tip de Vicente</div>
+        <h3>¡Lavate las manos antes de cocinar!</h3>
+        <p>Tocá para charlar conmigo</p>
+      </div>
+      <span class="tip-tag">🧼 Higiene</span>
+    </div>
+    
+    <div class="card welcome-card">
+      <div class="welcome-avatar">🧑‍🍳</div>
+      <div class="welcome-info">
+        <h2>¡Hola, <span id="kids-name">Chef</span>!</h2>
+        <p>Vicente tiene nuevas recetas para vos</p>
+        <span class="level-tag">⭐ Chef Junior · Nivel 5</span>
+      </div>
+    </div>
+    
+    <div class="stats-row">
+      <div class="stat-item"><div class="icon">⭐</div><div class="value">1,250</div><div class="label">Puntos</div></div>
+      <div class="stat-item"><div class="icon">📖</div><div class="value">12</div><div class="label">Recetas</div></div>
+      <div class="stat-item"><div class="icon">🏅</div><div class="value">8</div><div class="label">Medallas</div></div>
+      <div class="stat-item"><div class="icon">🔥</div><div class="value">5</div><div class="label">Racha</div></div>
+    </div>
+    
+    <!-- Home -->
+    <div id="kids-home">
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">🍰 Recetas para vos</h2>
+          <button class="section-link" onclick="showView('kids','recetas')">Ver todas →</button>
+        </div>
+        <div class="recipe-grid">
+          <div class="recipe-card">
+            <div class="recipe-img">🧁<span class="recipe-badge easy">Fácil</span></div>
+            <div class="recipe-info"><h3>Cupcakes</h3><div class="recipe-meta">⏱ 30 min</div><span class="recipe-points">⭐ +50</span></div>
+          </div>
+          <div class="recipe-card">
+            <div class="recipe-img" style="background:linear-gradient(135deg,#FCD34D,#F97316)">🍪<span class="recipe-badge easy">Fácil</span></div>
+            <div class="recipe-info"><h3>Galletas</h3><div class="recipe-meta">⏱ 25 min</div><span class="recipe-points">⭐ +40</span></div>
+          </div>
+          <div class="recipe-card">
+            <div class="recipe-img" style="background:linear-gradient(135deg,#F87171,#FB923C)">🍕<span class="recipe-badge medium">Medio</span></div>
+            <div class="recipe-info"><h3>Mini Pizzas</h3><div class="recipe-meta">⏱ 45 min</div><span class="recipe-points">⭐ +80</span></div>
+          </div>
+          <div class="recipe-card">
+            <div class="recipe-img" style="background:var(--grad-violet)">🥞<span class="recipe-badge easy">Fácil</span></div>
+            <div class="recipe-info"><h3>Pancakes</h3><div class="recipe-meta">⏱ 20 min</div><span class="recipe-points">⭐ +35</span></div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">🎯 Misiones</h2>
+        </div>
+        <div class="mission-list">
+          <div class="mission-item">
+            <div class="mission-icon">📸</div>
+            <div class="mission-info"><h4>¡Subí una foto!</h4><p>Compartí tu creación</p><div class="mission-progress"><div class="mission-progress-fill" style="width:0%"></div></div></div>
+            <div class="mission-reward"><div class="pts">+20</div><div class="lbl">pts</div></div>
+          </div>
+          <div class="mission-item">
+            <div class="mission-icon">🍳</div>
+            <div class="mission-info"><h4>Cocinero Semanal</h4><p>Completá 3 recetas (2/3)</p><div class="mission-progress"><div class="mission-progress-fill" style="width:66%"></div></div></div>
+            <div class="mission-reward"><div class="pts">+100</div><div class="lbl">pts</div></div>
+          </div>
+          <div class="mission-item">
+            <div class="mission-icon">🏆</div>
+            <div class="mission-info"><h4>Desafío Verano</h4><p>Receta refrescante</p><div class="mission-progress"><div class="mission-progress-fill" style="width:0%"></div></div></div>
+            <div class="mission-reward"><div class="pts">🏅</div><div class="lbl">medalla</div></div>
+          </div>
+        </div>
+      </section>
+    </div>
+    
+    <!-- Recetas -->
+    <div id="kids-recetas" class="hidden">
+      <section class="section">
+        <div class="section-header"><h2 class="section-title">📖 Todas las Recetas</h2></div>
+        <div class="recipe-grid">
+          <div class="recipe-card"><div class="recipe-img">🧁<span class="recipe-badge easy">Fácil</span></div><div class="recipe-info"><h3>Cupcakes</h3><div class="recipe-meta">⏱ 30 min</div><span class="recipe-points">⭐ +50</span></div></div>
+          <div class="recipe-card"><div class="recipe-img" style="background:linear-gradient(135deg,#FCD34D,#F97316)">🍪<span class="recipe-badge easy">Fácil</span></div><div class="recipe-info"><h3>Galletas</h3><div class="recipe-meta">⏱ 25 min</div><span class="recipe-points">⭐ +40</span></div></div>
+          <div class="recipe-card"><div class="recipe-img" style="background:linear-gradient(135deg,#F87171,#FB923C)">🍕<span class="recipe-badge medium">Medio</span></div><div class="recipe-info"><h3>Mini Pizzas</h3><div class="recipe-meta">⏱ 45 min</div><span class="recipe-points">⭐ +80</span></div></div>
+          <div class="recipe-card"><div class="recipe-img" style="background:var(--grad-violet)">🥞<span class="recipe-badge easy">Fácil</span></div><div class="recipe-info"><h3>Pancakes</h3><div class="recipe-meta">⏱ 20 min</div><span class="recipe-points">⭐ +35</span></div></div>
+          <div class="recipe-card"><div class="recipe-img" style="background:var(--grad-green)">🥗<span class="recipe-badge easy">Fácil</span></div><div class="recipe-info"><h3>Ensalada</h3><div class="recipe-meta">⏱ 15 min</div><span class="recipe-points">⭐ +30</span></div></div>
+          <div class="recipe-card"><div class="recipe-img" style="background:linear-gradient(135deg,#F97316,#EF4444)">🌮<span class="recipe-badge medium">Medio</span></div><div class="recipe-info"><h3>Tacos</h3><div class="recipe-meta">⏱ 40 min</div><span class="recipe-points">⭐ +70</span></div></div>
+        </div>
+      </section>
+    </div>
+    
+    <!-- Chat -->
+    <div id="kids-chat" class="hidden">
+      <div class="chat-container">
+        <div class="chat-header">
+          <img src="vicente_celu.jpg" alt="Vicente">
+          <div class="chat-header-info"><h3>Vicente</h3><span>Tu amigo cocinero</span></div>
+          <div class="chat-status"></div>
+        </div>
+        <div class="chat-messages" id="chat-msgs">
+          <div class="msg bot">
+            <img src="vicente_solo.jpg" alt="Vicente" class="msg-avatar">
+            <div class="msg-bubble">¡Hola! 👋 Soy Vicente. ¿En qué puedo ayudarte?<div class="msg-tip"><div class="msg-tip-label">💡 Dato curioso</div>¿Sabías que las zanahorias antes eran moradas?</div></div>
+          </div>
+        </div>
+        <div class="chat-quick">
+          <button class="quick-chip" onclick="vicenteChat('higiene')">🧼 Higiene</button>
+          <button class="quick-chip" onclick="vicenteChat('nutricion')">🥦 Nutrición</button>
+          <button class="quick-chip" onclick="vicenteChat('curiosidad')">🤔 Curiosidades</button>
+          <button class="quick-chip" onclick="vicenteChat('receta')">🍳 Recetas</button>
+        </div>
+        <div class="chat-input">
+          <input type="text" id="chat-text" placeholder="Escribí tu pregunta..." onkeypress="if(event.key==='Enter')sendChat()">
+          <button onclick="sendChat()">📤</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Galería -->
+    <div id="kids-galeria" class="hidden">
+      <section class="section">
+        <div class="section-header"><h2 class="section-title">📸 Mi Galería</h2></div>
+        <div class="gallery-grid">
+          <div class="gallery-item add"><span class="add-icon">📷</span><span>Subir</span></div>
+          <div class="gallery-item">🧁</div>
+          <div class="gallery-item" style="background:linear-gradient(135deg,#FCD34D,#F97316)">🍪</div>
+          <div class="gallery-item" style="background:linear-gradient(135deg,#F87171,#FB923C)">🍕</div>
+          <div class="gallery-item" style="background:var(--grad-green)">🥗</div>
+          <div class="gallery-item" style="background:var(--grad-violet)">🍰</div>
+        </div>
+      </section>
+    </div>
+    
+    <!-- Videos -->
+    <div id="kids-videos" class="hidden">
+      <section class="section">
+        <div class="section-header"><h2 class="section-title">🎬 Aprende con Vicente</h2></div>
+        <div class="tabs">
+          <button class="tab active">📹 Videos</button>
+          <button class="tab">📊 Infografías</button>
+          <button class="tab">📑 Presentaciones</button>
+        </div>
+        <div class="video-grid">
+          <div class="video-card"><div class="video-thumb"><div class="video-play">▶️</div><span class="video-duration">5:32</span></div><div class="video-info"><h3>🧼 Higiene en la Cocina</h3><p>Reglas importantes</p><div class="video-vicente"><img src="vicente_solo.jpg">Con Vicente</div></div></div>
+          <div class="video-card"><div class="video-thumb" style="background:var(--grad-green)"><div class="video-play">▶️</div><span class="video-duration">4:15</span></div><div class="video-info"><h3>🥦 Alimentación Saludable</h3><p>¿Por qué las verduras?</p><div class="video-vicente"><img src="vicente_solo.jpg">Con Vicente</div></div></div>
+          <div class="video-card"><div class="video-thumb" style="background:linear-gradient(135deg,#F87171,#FCD34D)"><div class="video-play">▶️</div><span class="video-duration">6:45</span></div><div class="video-info"><h3>🔪 Cortar Seguro</h3><p>Técnicas básicas</p><div class="video-vicente"><img src="vicente_solo.jpg">Con Vicente</div></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
+  
+  <div class="vicente-float" onclick="showView('kids','chat')">
+    <img src="vicente_celu.jpg" alt="Vicente">
+    <div class="dot"></div>
+  </div>
+  
+  <nav class="app-nav">
+    <button class="nav-btn active" onclick="showView('kids','home')"><span class="icon">🏠</span>Inicio</button>
+    <button class="nav-btn" onclick="showView('kids','recetas')"><span class="icon">📖</span>Recetas</button>
+    <button class="nav-btn" onclick="showView('kids','chat')"><span class="icon">💬</span>Vicente</button>
+    <button class="nav-btn" onclick="showView('kids','galeria')"><span class="icon">📸</span>Galería</button>
+    <button class="nav-btn" onclick="showView('kids','videos')"><span class="icon">🎬</span>Aprender</button>
+  </nav>
+</div>
+
+<!-- ========== TEENS APP ========== -->
+<div id="app-teens" class="app teens hidden">
+  <header class="app-header">
+    <button class="header-back" onclick="showPortal()">←</button>
+    <img src="logo.png" alt="Logo" class="header-logo">
+    <h1 class="header-title">Level Up Chef</h1>
+    <div class="header-points">⚡ 3,450 XP</div>
+    <div class="header-avatar" style="background:var(--grad-teens);border:2px solid #00CEC9">😎</div>
+  </header>
+  <main class="app-main">
+    <div class="card welcome-card" style="background:linear-gradient(135deg,rgba(0,206,201,0.8),rgba(122,185,41,0.8))">
+      <div class="welcome-avatar" style="background:rgba(0,0,0,0.2)">😎</div>
+      <div class="welcome-info">
+        <h2>Hey, <span id="teens-name">Chef</span>!</h2>
+        <p>Sous Chef en entrenamiento</p>
+        <span class="level-tag" style="background:rgba(0,0,0,0.2)">⚡ Nivel 12</span>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item"><div class="icon">⚡</div><div class="value">3,450</div><div class="label">XP</div></div>
+      <div class="stat-item"><div class="icon">🍽️</div><div class="value">28</div><div class="label">Recetas</div></div>
+      <div class="stat-item"><div class="icon">🏆</div><div class="value">15</div><div class="label">Logros</div></div>
+      <div class="stat-item"><div class="icon">🔥</div><div class="value">12</div><div class="label">Racha</div></div>
+    </div>
+  </main>
+  <div class="vicente-float" style="border-color:#00CEC9"><img src="vicente_celu.jpg" alt="Vicente"></div>
+  <nav class="app-nav">
+    <button class="nav-btn active"><span class="icon">🏠</span>Inicio</button>
+    <button class="nav-btn"><span class="icon">📖</span>Recetas</button>
+    <button class="nav-btn"><span class="icon">💬</span>Vicente</button>
+    <button class="nav-btn"><span class="icon">📸</span>Galería</button>
+    <button class="nav-btn"><span class="icon">🎬</span>Recursos</button>
+  </nav>
+</div>
+
+<!-- ========== PARENTS APP ========== -->
+<div id="app-parents" class="app hidden">
+  <header class="app-header">
+    <button class="header-back" onclick="showPortal()">←</button>
+    <img src="logo.png" alt="Logo" class="header-logo">
+    <h1 class="header-title">Portal de Padres</h1>
+    <div class="header-avatar" style="background:var(--grad-teal);color:white;font-size:0.8rem">MR</div>
+  </header>
+  <main class="app-main">
+    <div class="child-card">
+      <div class="child-header">
+        <div class="child-avatar">🧑‍🍳</div>
+        <div class="child-info"><h3>Martina Rodríguez</h3><span class="child-level">⭐ Chef Junior · Nivel 5</span></div>
+      </div>
+      <div class="child-stats">
+        <div class="child-stat"><div class="value">1,250</div><div class="label">Puntos</div></div>
+        <div class="child-stat"><div class="value">12</div><div class="label">Recetas</div></div>
+        <div class="child-stat"><div class="value">8</div><div class="label">Medallas</div></div>
+        <div class="child-stat"><div class="value">95%</div><div class="label">Asistencia</div></div>
+      </div>
+      <button class="btn btn-parents">Ver progreso completo →</button>
+    </div>
+    
+    <section class="section">
+      <div class="section-header"><h2 class="section-title">💬 Mensajes</h2></div>
+      <div class="message-list">
+        <div class="message-item unread"><div class="message-avatar">👩‍🍳</div><div class="message-content"><h4>Profe Rainero</h4><p>¡Martina hizo unos cupcakes increíbles!</p></div><div class="message-time">Hoy</div></div>
+        <div class="message-item"><div class="message-avatar">👩‍🍳</div><div class="message-content"><h4>Profe Rainero</h4><p>Recordatorio: mañana traer delantal</p></div><div class="message-time">Ayer</div></div>
+      </div>
+    </section>
+    
+    <section class="section">
+      <div class="section-header"><h2 class="section-title">📅 Programas</h2></div>
+      <div class="program-grid">
+        <div class="program-card"><div class="program-banner summer">☀️<span class="program-tag">Inscripto</span></div><div class="program-info"><h3>Verano 2025</h3><p>Clases de cocina</p><div class="program-dates">📅 15 Dic - 28 Feb</div></div></div>
+        <div class="program-card"><div class="program-banner winter">❄️<span class="program-tag">Próximo</span></div><div class="program-info"><h3>Invierno 2025</h3><p>Recetas abrigadas</p><div class="program-dates">📅 7 Jul - 25 Jul</div></div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ========== DOCENTE APP ========== -->
+<div id="app-docente" class="app hidden">
+  <header class="app-header">
+    <button class="header-back" onclick="showPortal()">←</button>
+    <img src="logo.png" alt="Logo" class="header-logo">
+    <h1 class="header-title">Panel Docente</h1>
+    <div class="header-avatar" style="background:linear-gradient(135deg,#F59E0B,#D97706);color:white">👩‍🏫</div>
+  </header>
+  <main class="app-main">
+    <div class="card welcome-card" style="background:linear-gradient(135deg,#F59E0B,#D97706)">
+      <div class="welcome-avatar" style="background:rgba(255,255,255,0.2)">👩‍🏫</div>
+      <div class="welcome-info">
+        <h2>¡Hola, Profe!</h2>
+        <p>Panel de gestión</p>
+        <span class="level-tag" style="background:rgba(255,255,255,0.2)">Receso Verano 2025</span>
+      </div>
+    </div>
+    
+    <div class="docente-stats">
+      <div class="docente-stat"><div class="icon">👧</div><div class="value">24</div><div class="label">Alumnos Kids</div></div>
+      <div class="docente-stat"><div class="icon">🧑</div><div class="value">18</div><div class="label">Alumnos Teens</div></div>
+      <div class="docente-stat"><div class="icon">📖</div><div class="value">15</div><div class="label">Recetas</div></div>
+      <div class="docente-stat"><div class="icon">💬</div><div class="value">8</div><div class="label">Mensajes</div></div>
+    </div>
+    
+    <!-- Home -->
+    <div id="docente-home">
+      <section class="section">
+        <div class="section-header"><h2 class="section-title">⚡ Acciones</h2></div>
+        <div class="action-grid">
+          <div class="action-btn" onclick="showView('docente','alumnos')"><div class="icon">👥</div><span>Alumnos</span></div>
+          <div class="action-btn" onclick="showView('docente','contenido')"><div class="icon">🎬</div><span>Contenido</span></div>
+          <div class="action-btn" onclick="showView('docente','mensajes')"><div class="icon">💬</div><span>Mensajes</span></div>
+          <div class="action-btn" onclick="showView('docente','galeria')"><div class="icon">📸</div><span>Galería</span></div>
+          <div class="action-btn" onclick="showView('docente','recetas')"><div class="icon">📖</div><span>Recetas</span></div>
+          <div class="action-btn" onclick="showView('docente','programas')"><div class="icon">📅</div><span>Programas</span></div>
+        </div>
+      </section>
+      
+      <section class="section">
+        <div class="section-header"><h2 class="section-title">📬 Mensajes Recientes</h2><button class="section-link">Ver todos →</button></div>
+        <div class="message-list">
+          <div class="message-item unread"><div class="message-avatar">👨</div><div class="message-content"><h4>Papá de Martina</h4><p>Consulta sobre el receso...</p></div><div class="message-time">Hoy</div></div>
+          <div class="message-item unread"><div class="message-avatar">👩</div><div class="message-content"><h4>Mamá de Lucas</h4><p>¿Hay clases el viernes?</p></div><div class="message-time">Hoy</div></div>
+        </div>
+      </section>
+    </div>
+    
+    <!-- Alumnos -->
+    <div id="docente-alumnos" class="hidden">
+      <section class="section">
+        <div class="section-header"><h2 class="section-title">👥 Alumnos</h2></div>
+        <div class="tabs">
+          <button class="tab active">👧 Kids (24)</button>
+          <button class="tab">🧑 Teens (18)</button>
+        </div>
+        <div class="student-list">
+          <div class="student-item"><div class="student-avatar">👧</div><div class="student-info"><h4>Martina Rodríguez</h4><p>Nivel 5 · Chef Junior</p></div><div class="student-stats"><span>⭐ 1,250</span><span>🏅 8</span></div></div>
+          <div class="student-item"><div class="student-avatar">👦</div><div class="student-info"><h4>Tomás García</h4><p>Nivel 4 · Ayudante</p></div><div class="student-stats"><span>⭐ 980</span><span>🏅 5</span></div></div>
+          <div class="student-item"><div class="student-avatar">👧</div><div class="student-info"><h4>Valentina López</h4><p>Nivel 6 · Chef Junior</p></div><div class="student-stats"><span>⭐ 1,520</span><span>🏅 10</span></div></div>
+        </div>
+      </section>
+    </div>
+    
+    <!-- Contenido -->
+    <div id="docente-contenido" class="hidden">
+      <section class="section">
+        <div class="section-header"><h2 class="section-title">🎬 Contenido</h2></div>
+        <div class="tabs">
+          <button class="tab active">📹 Videos</button>
+          <button class="tab">📊 Infografías</button>
+          <button class="tab">📑 Presentaciones</button>
+        </div>
+        <div class="card"><h3 style="margin-bottom:12px">📤 Subir contenido</h3><div class="upload-area"><div class="icon">📁</div><p>Arrastrá archivos o tocá para seleccionar</p></div></div>
+        <div class="video-grid">
+          <div class="video-card"><div class="video-thumb"><div class="video-play">▶️</div><span class="video-duration">5:32</span></div><div class="video-info"><h3>🧼 Higiene</h3><p>15 visualizaciones</p></div></div>
+          <div class="video-card"><div class="video-thumb" style="background:var(--grad-green)"><div class="video-play">▶️</div><span class="video-duration">4:15</span></div><div class="video-info"><h3>🥦 Nutrición</h3><p>23 visualizaciones</p></div></div>
+        </div>
+      </section>
+    </div>
+    
+    <!-- Mensajes -->
+    <div id="docente-mensajes" class="hidden">
+      <section class="section">
+        <div class="section-header"><h2 class="section-title">💬 Mensajes</h2></div>
+        <div class="message-list">
+          <div class="message-item unread"><div class="message-avatar">👨</div><div class="message-content"><h4>Papá de Martina</h4><p>Consulta sobre el receso de verano...</p></div><div class="message-time">Hoy 14:30</div></div>
+          <div class="message-item unread"><div class="message-avatar">👩</div><div class="message-content"><h4>Mamá de Lucas</h4><p>¿Hay clases el viernes?</p></div><div class="message-time">Hoy 11:15</div></div>
+          <div class="message-item"><div class="message-avatar">👨</div><div class="message-content"><h4>Papá de Sofía</h4><p>Gracias por las fotos!</p></div><div class="message-time">Ayer</div></div>
+        </div>
+      </section>
+    </div>
+    
+    <!-- Galería -->
+    <div id="docente-galeria" class="hidden">
+      <section class="section">
+        <div class="section-header"><h2 class="section-title">📸 Galería</h2></div>
+        <div class="card"><h3 style="margin-bottom:12px">📤 Subir fotos</h3><div class="upload-area"><div class="icon">📷</div><p>Subí fotos de la clase</p></div></div>
+        <div class="gallery-grid">
+          <div class="gallery-item">🧁</div>
+          <div class="gallery-item" style="background:linear-gradient(135deg,#FCD34D,#F97316)">🍪</div>
+          <div class="gallery-item" style="background:linear-gradient(135deg,#F87171,#FB923C)">🍕</div>
+          <div class="gallery-item" style="background:var(--grad-green)">🥗</div>
+          <div class="gallery-item" style="background:var(--grad-violet)">🍰</div>
+          <div class="gallery-item" style="background:var(--grad-teal)">🥞</div>
+        </div>
+      </section>
+    </div>
+    
+    <!-- Recetas -->
+    <div id="docente-recetas" class="hidden">
+      <section class="section">
+        <div class="section-header"><h2 class="section-title">📖 Recetas</h2><button class="btn btn-docente" style="width:auto;padding:8px 16px;font-size:0.85rem">➕ Nueva</button></div>
+        <div class="recipe-grid">
+          <div class="recipe-card"><div class="recipe-img">🧁<span class="recipe-badge easy">Fácil</span></div><div class="recipe-info"><h3>Cupcakes</h3><div class="recipe-meta">⏱ 30 min · ✏️ Editar</div></div></div>
+          <div class="recipe-card"><div class="recipe-img" style="background:linear-gradient(135deg,#FCD34D,#F97316)">🍪<span class="recipe-badge easy">Fácil</span></div><div class="recipe-info"><h3>Galletas</h3><div class="recipe-meta">⏱ 25 min · ✏️ Editar</div></div></div>
+        </div>
+      </section>
+    </div>
+    
+    <!-- Programas -->
+    <div id="docente-programas" class="hidden">
+      <section class="section">
+        <div class="section-header"><h2 class="section-title">📅 Programas</h2></div>
+        <div class="program-grid">
+          <div class="program-card"><div class="program-banner summer">☀️<span class="program-tag">Activo</span></div><div class="program-info"><h3>Verano 2025</h3><p>24 inscriptos</p><div class="program-dates">📅 15 Dic - 28 Feb</div></div></div>
+          <div class="program-card"><div class="program-banner winter">❄️<span class="program-tag">Próximo</span></div><div class="program-info"><h3>Invierno 2025</h3><p>Inscripciones cerradas</p><div class="program-dates">📅 7 Jul - 25 Jul</div></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
+  
+  <nav class="app-nav">
+    <button class="nav-btn active" onclick="showView('docente','home')"><span class="icon">🏠</span>Inicio</button>
+    <button class="nav-btn" onclick="showView('docente','alumnos')"><span class="icon">👥</span>Alumnos</button>
+    <button class="nav-btn" onclick="showView('docente','contenido')"><span class="icon">🎬</span>Contenido</button>
+    <button class="nav-btn" onclick="showView('docente','mensajes')"><span class="icon">💬</span>Mensajes</button>
+    <button class="nav-btn" onclick="showView('docente','galeria')"><span class="icon">📸</span>Galería</button>
+  </nav>
+</div>
+
+<script>
+const vicenteData={
+  higiene:["🧼 ¡Lavarse las manos es SÚPER importante! 20 segundos con jabón. ¡Cantá 'Cumpleaños feliz' dos veces!","🧽 Siempre limpiá tu área antes y después de cocinar.","👨‍🍳 Los chefs se lavan las manos más de 20 veces al día!"],
+  nutricion:["🥦 ¡Las verduras son superpoderes! Verdes = energía, naranjas = vista, rojas = corazón.","🍎 Intentá comer 5 colores cada día. ¡Un arcoíris en tu plato!","💪 El desayuno te da energía de campeón!"],
+  curiosidad:["🤔 ¿Sabías que las papas fritas fueron un accidente?","🍕 La pizza más grande medía más de 1.200 m²!","🥕 Las zanahorias antes eran moradas!","🍫 Los mayas valoraban el chocolate como el oro!"],
+  receta:["🍪 Te recomiendo las Galletas. ¡Son fáciles y deliciosas!","🧁 Los Cupcakes son perfectos para empezar.","🥞 ¿Qué tal Pancakes para el desayuno?"],
+  default:["¡Qué buena pregunta! 🤔","¡Me encanta tu curiosidad! 🌟","¡Estoy acá para ayudarte! 👨‍🍳"]
+};
+
+function hideAll(){document.querySelectorAll('.portal,.login,.app').forEach(e=>e.classList.add('hidden'))}
+function showPortal(){hideAll();document.getElementById('portal').classList.remove('hidden')}
+function showLogin(t){hideAll();document.getElementById('login-'+t).classList.remove('hidden')}
+
+function login(t){
+  const u=document.getElementById(t+'-user')||document.getElementById(t+'-email');
+  const n=u?u.value:'Chef';
+  if(!n)return;
+  hideAll();
+  document.getElementById('app-'+t).classList.remove('hidden');
+  const d=document.getElementById(t+'-name');
+  if(d)d.textContent=n;
+}
+
+function showView(app,view){
+  const a=document.getElementById('app-'+app);
+  a.querySelectorAll('[id^="'+app+'-"]').forEach(e=>e.classList.add('hidden'));
+  const v=document.getElementById(app+'-'+view);
+  if(v)v.classList.remove('hidden');
+  a.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  if(event&&event.currentTarget)event.currentTarget.classList.add('active');
+}
+
+function vicenteChat(t){
+  const m=vicenteData[t]||vicenteData.default;
+  addMsg('bot',m[Math.floor(Math.random()*m.length)]);
+}
+
+function sendChat(){
+  const i=document.getElementById('chat-text');
+  const t=i.value.trim();
+  if(!t)return;
+  addMsg('user',t);
+  i.value='';
+  setTimeout(()=>{
+    let topic='default';
+    const l=t.toLowerCase();
+    if(l.includes('lavar')||l.includes('higiene')||l.includes('mano'))topic='higiene';
+    else if(l.includes('salud')||l.includes('verdura')||l.includes('nutri'))topic='nutricion';
+    else if(l.includes('sabías')||l.includes('curioso'))topic='curiosidad';
+    else if(l.includes('receta')||l.includes('cocinar'))topic='receta';
+    vicenteChat(topic);
+  },600);
+}
+
+function addMsg(type,text){
+  const c=document.getElementById('chat-msgs');
+  const d=document.createElement('div');
+  d.className='msg '+type;
+  if(type==='bot'){
+    d.innerHTML='<img src="vicente_solo.jpg" class="msg-avatar"><div class="msg-bubble">'+text+'</div>';
+  }else{
+    d.innerHTML='<div class="msg-avatar">🧑‍🍳</div><div class="msg-bubble">'+text+'</div>';
+  }
+  c.appendChild(d);
+  c.scrollTop=c.scrollHeight;
+}
+
+showPortal();
+</script>
+</body>
+</html>
