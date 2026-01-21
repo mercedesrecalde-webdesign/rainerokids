@@ -979,6 +979,117 @@ h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; font-weight: 800; }
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+/* Content Tabs */
+.content-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.content-tab {
+  padding: 10px 16px;
+  border: none;
+  background: white;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  box-shadow: var(--shadow);
+}
+.content-tab.active {
+  background: var(--grad-violet);
+  color: white;
+}
+.content-tab:hover:not(.active) {
+  background: var(--bg);
+}
+
+.content-panel.hidden { display: none; }
+
+/* Upload Area */
+.upload-area {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-bottom: 16px;
+  background: white;
+}
+.upload-area:hover {
+  border-color: var(--violet);
+  background: rgba(123,45,142,0.05);
+}
+.upload-icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+.upload-area p {
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.upload-area span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Content Grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+.content-card {
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+.content-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.content-thumb {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  position: relative;
+}
+.content-thumb .duration {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.content-info {
+  padding: 10px;
+}
+.content-info h4 {
+  font-size: 0.8rem;
+  color: var(--text);
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+.content-info p {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
 /* Loading */
 .loading { display: flex; align-items: center; justify-content: center; padding: 40px; }
 .spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top-color: var(--violet); border-radius: 50%; animation: spin 1s linear infinite; }
@@ -1072,6 +1183,7 @@ h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; font-weight: 800; }
     <symbol id="icon-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
     <symbol id="icon-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></symbol>
     <symbol id="icon-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9"/></symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16 10,8"/></symbol>
     <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
   </defs>
 </svg>
@@ -1134,13 +1246,13 @@ h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; font-weight: 800; }
       <button class="auth-tab" onclick="showAuthTab('register')">Registrarse</button>
     </div>
     <div id="docente-login-form">
-      <div class="form-group"><label>Email institucional</label><input type="email" class="form-input" id="docente-email" placeholder="profe@rainero.edu"></div>
+      <div class="form-group"><label>Email institucional</label><input type="email" class="form-input" id="docente-email" placeholder="nombre@mvl.edu.ar"></div>
       <div class="form-group"><label>Contraseña</label><input type="password" class="form-input" id="docente-pass" placeholder="••••••"></div>
       <button class="btn btn-orange" onclick="login('docente')">Ingresar al panel</button>
     </div>
     <div id="docente-register-form" class="hidden">
       <div class="form-group"><label>Nombre completo</label><input type="text" class="form-input" id="docente-name" placeholder="María García"></div>
-      <div class="form-group"><label>Email institucional</label><input type="email" class="form-input" id="docente-email-reg" placeholder="profe@rainero.edu"><p class="form-hint">Debe ser un email @rainero.edu o @vicentelopez.gov.ar</p></div>
+      <div class="form-group"><label>Email institucional</label><input type="email" class="form-input" id="docente-email-reg" placeholder="nombre@mvl.edu.ar"><p class="form-hint">Debe ser un email @mvl.edu.ar</p></div>
       <div class="form-group"><label>Contraseña</label><input type="password" class="form-input" id="docente-pass-reg" placeholder="Mínimo 8 caracteres"></div>
       <div class="form-group"><label>Confirmar contraseña</label><input type="password" class="form-input" id="docente-pass-confirm" placeholder="Repetí tu contraseña"></div>
       <button class="btn btn-orange" onclick="registerDocente()">📝 Crear cuenta</button>
@@ -1191,6 +1303,25 @@ h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; font-weight: 800; }
     <section class="section">
       <div class="section-header"><h2 class="section-title"><svg><use href="#icon-book"/></svg>Recetas para vos</h2><button class="section-link">Ver todas →</button></div>
       <div class="recipe-grid" id="recipes-grid"><div class="loading"><div class="spinner"></div></div></div>
+    </section>
+    
+    <!-- APRENDER CON VICENTE -->
+    <section class="section">
+      <div class="section-header"><h2 class="section-title"><svg><use href="#icon-play"/></svg>Aprende con Vicente</h2></div>
+      <div class="content-grid">
+        <div class="content-card video" onclick="showToast('📹 Reproduciendo video...')">
+          <div class="content-thumb" style="background:var(--grad-green)">📹<span class="duration">5:32</span></div>
+          <div class="content-info"><h4>Higiene en la Cocina</h4><p>🧼 Con Vicente</p></div>
+        </div>
+        <div class="content-card video" onclick="showToast('📹 Reproduciendo video...')">
+          <div class="content-thumb" style="background:var(--grad-violet)">📹<span class="duration">4:15</span></div>
+          <div class="content-info"><h4>Alimentación Saludable</h4><p>🥦 Nutrición</p></div>
+        </div>
+        <div class="content-card" onclick="showToast('📊 Abriendo infografía...')">
+          <div class="content-thumb" style="background:var(--grad-teal)">📊</div>
+          <div class="content-info"><h4>El Plato Saludable</h4><p>🍽️ Infografía</p></div>
+        </div>
+      </div>
     </section>
   </main>
   <button class="vicente-fab" onclick="showToast('💬 Chat con Vicente próximamente!')"><img src="vicente_celu.jpg" alt="Vicente"><span class="notification"></span></button>
@@ -1276,6 +1407,82 @@ h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; font-weight: 800; }
     <section class="section">
       <div class="section-header"><h2 class="section-title"><svg><use href="#icon-book"/></svg>Gestionar Recetas</h2><button class="btn btn-primary" style="width:auto;padding:10px 16px;font-size:0.85rem" onclick="openRecipeForm()"><svg style="width:16px;height:16px"><use href="#icon-plus"/></svg>Nueva</button></div>
       <div class="recipe-grid" id="docente-recipes-grid"><div class="loading"><div class="spinner"></div></div></div>
+    </section>
+    
+    <!-- CONTENIDO EDUCATIVO -->
+    <section class="section">
+      <div class="section-header"><h2 class="section-title"><svg><use href="#icon-play"/></svg>Contenido Educativo</h2></div>
+      <div class="content-tabs">
+        <button class="content-tab active" onclick="showContentTab('videos')">📹 Videos</button>
+        <button class="content-tab" onclick="showContentTab('infografias')">📊 Infografías</button>
+        <button class="content-tab" onclick="showContentTab('presentaciones')">📓 NotebookLM</button>
+      </div>
+      
+      <div id="content-videos" class="content-panel">
+        <div class="upload-area" onclick="showToast('📹 Subir video próximamente')">
+          <div class="upload-icon">📹</div>
+          <p>Subir video corto</p>
+          <span>MP4, máx 50MB</span>
+        </div>
+        <div class="content-grid">
+          <div class="content-card video">
+            <div class="content-thumb" style="background:var(--grad-green)">📹<span class="duration">5:32</span></div>
+            <div class="content-info"><h4>Higiene en la Cocina</h4><p>Con Vicente</p></div>
+          </div>
+          <div class="content-card video">
+            <div class="content-thumb" style="background:var(--grad-violet)">📹<span class="duration">4:15</span></div>
+            <div class="content-info"><h4>Alimentación Saludable</h4><p>Nutrición básica</p></div>
+          </div>
+          <div class="content-card video">
+            <div class="content-thumb" style="background:var(--grad-teal)">📹<span class="duration">6:45</span></div>
+            <div class="content-info"><h4>Técnicas de Corte</h4><p>Seguridad</p></div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="content-infografias" class="content-panel hidden">
+        <div class="upload-area" onclick="showToast('📊 Subir infografía próximamente')">
+          <div class="upload-icon">📊</div>
+          <p>Subir infografía</p>
+          <span>PNG, JPG o PDF</span>
+        </div>
+        <div class="content-grid">
+          <div class="content-card">
+            <div class="content-thumb" style="background:linear-gradient(135deg,#EC4899,#DB2777)">📊</div>
+            <div class="content-info"><h4>El Plato Saludable</h4><p>Alimentación balanceada</p></div>
+          </div>
+          <div class="content-card">
+            <div class="content-thumb" style="background:linear-gradient(135deg,#3B82F6,#2563EB)">📊</div>
+            <div class="content-info"><h4>Pirámide Nutricional</h4><p>Grupos de alimentos</p></div>
+          </div>
+          <div class="content-card">
+            <div class="content-thumb" style="background:linear-gradient(135deg,#F59E0B,#D97706)">📊</div>
+            <div class="content-info"><h4>Lavado de Manos</h4><p>Paso a paso</p></div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="content-presentaciones" class="content-panel hidden">
+        <div class="upload-area" onclick="showToast('📓 Subir presentación próximamente')">
+          <div class="upload-icon">📓</div>
+          <p>Subir presentación NotebookLM</p>
+          <span>Link o PDF</span>
+        </div>
+        <div class="content-grid">
+          <div class="content-card">
+            <div class="content-thumb" style="background:linear-gradient(135deg,#8B5CF6,#6D28D9)">📓</div>
+            <div class="content-info"><h4>Introducción a la Cocina</h4><p>Clase 1 - Básicos</p></div>
+          </div>
+          <div class="content-card">
+            <div class="content-thumb" style="background:linear-gradient(135deg,#10B981,#059669)">📓</div>
+            <div class="content-info"><h4>Seguridad Alimentaria</h4><p>Clase 2 - Higiene</p></div>
+          </div>
+          <div class="content-card">
+            <div class="content-thumb" style="background:linear-gradient(135deg,#06B6D4,#0891B2)">📓</div>
+            <div class="content-info"><h4>Recetas de Verano</h4><p>Clase 3 - Práctica</p></div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
   <nav class="app-nav">
@@ -1401,7 +1608,7 @@ async function registerDocente() {
   const confirm = document.getElementById('docente-pass-confirm').value;
   
   if (!name || !email || !pass) { showToast('❌ Completá todos los campos'); return; }
-  if (!email.includes('@rainero.edu') && !email.includes('@vicentelopez.gov.ar')) { showToast('❌ Usá un email institucional'); return; }
+  if (!email.includes('@mvl.edu.ar')) { showToast('❌ Usá un email institucional'); return; }
   if (pass.length < 8) { showToast('❌ Contraseña muy corta (min 8)'); return; }
   if (pass !== confirm) { showToast('❌ Las contraseñas no coinciden'); return; }
   
@@ -1510,6 +1717,13 @@ function sendMessage() {
   showToast('✅ Mensaje enviado a los padres!');
   document.getElementById('msg-subject').value = '';
   document.getElementById('msg-content').value = '';
+}
+
+function showContentTab(tab) {
+  document.querySelectorAll('.content-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.content-panel').forEach(p => p.classList.add('hidden'));
+  document.getElementById('content-' + tab).classList.remove('hidden');
 }
 
 function showToast(msg) { const toast = document.getElementById('toast'); toast.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3000); }
