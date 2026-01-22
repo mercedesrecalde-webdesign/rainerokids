@@ -198,6 +198,22 @@ h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; font-weight: 800; }
   align-items: center;
   padding: 10px 0;
 }
+.header-right-kids {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.edu-badge-kids {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(123,45,142,0.15), rgba(0,161,154,0.15));
+  border-radius: 50%;
+  font-size: 0.9rem;
+  cursor: help;
+}
 .logo-badge {
   display: flex;
   align-items: center;
@@ -260,6 +276,216 @@ h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; font-weight: 800; }
   padding: 20px;
   color: var(--text-muted);
   font-size: 0.8rem;
+}
+.footer-dev {
+  margin-top: 8px;
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+.footer-edu {
+  margin-top: 4px;
+  font-size: 0.7rem;
+  color: var(--teal);
+  font-weight: 500;
+}
+
+/* Brand Header */
+.brand-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-logo-sm {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+}
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.brand-name {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--violet);
+}
+.brand-version {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--teal);
+}
+.mvl-logo {
+  height: 44px;
+  cursor: pointer;
+  transition: var(--transition);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+.mvl-logo:hover {
+  transform: scale(1.05);
+}
+.product-badge {
+  background: var(--grad-main);
+  color: white;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Dev Panel */
+.dev-welcome {
+  background: linear-gradient(135deg, #1E293B, #334155);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  color: white;
+  margin-bottom: 20px;
+}
+.dev-welcome h2 {
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+.dev-welcome p {
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+.dev-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.dev-stat {
+  background: white;
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.dev-stat-value {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--violet);
+  font-family: 'Nunito', sans-serif;
+}
+.dev-stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.dev-product {
+  background: white;
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--border);
+}
+.dev-product.active {
+  border-left-color: var(--green);
+}
+.dev-product.coming {
+  opacity: 0.6;
+}
+.dev-product-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.dev-product-icon {
+  font-size: 1.5rem;
+}
+.dev-product-info {
+  flex: 1;
+}
+.dev-product-info h4 {
+  font-size: 0.95rem;
+  color: var(--text);
+}
+.dev-product-info p {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.dev-status {
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: var(--bg);
+  color: var(--text-muted);
+}
+.dev-status.live {
+  background: rgba(122,185,41,0.15);
+  color: var(--green);
+}
+.dev-status.planned {
+  background: rgba(123,45,142,0.15);
+  color: var(--violet);
+}
+.dev-product-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.dev-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.dev-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.dev-action:hover {
+  border-color: var(--violet);
+  background: rgba(123,45,142,0.05);
+}
+.dev-action span {
+  font-size: 1.5rem;
+}
+.dev-inscripciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dev-inscripcion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  font-size: 0.85rem;
+}
+.dev-inscripcion button {
+  padding: 6px 14px;
+  background: var(--grad-green);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 /* ==================== LOGIN / REGISTER ==================== */
@@ -1090,6 +1316,135 @@ h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; font-weight: 800; }
   color: var(--text-muted);
 }
 
+/* Banner Inscripciones */
+.banner-inscripcion {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: linear-gradient(135deg, #7B2D8E, #00A19A);
+  border-radius: var(--radius);
+  color: white;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(123,45,142,0.3);
+}
+.banner-inscripcion:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(123,45,142,0.4);
+}
+.banner-inscripcion.verano {
+  background: linear-gradient(135deg, #F59E0B, #7AB929);
+  box-shadow: 0 4px 15px rgba(245,158,11,0.3);
+}
+.banner-inscripcion.verano:hover {
+  box-shadow: 0 8px 25px rgba(245,158,11,0.4);
+}
+.banner-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+.banner-mascot {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,0.5);
+  flex-shrink: 0;
+  animation: bounce-small 2s ease-in-out infinite;
+}
+@keyframes bounce-small {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+.banner-content {
+  flex: 1;
+}
+.banner-content h3 {
+  font-size: 1rem;
+  margin-bottom: 2px;
+}
+.banner-content p {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+.banner-content .banner-recetas {
+  font-size: 0.7rem;
+  opacity: 0.85;
+  margin-top: 4px;
+  font-style: italic;
+}
+.banner-arrow {
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+/* Programa Cards */
+.programa-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--green);
+}
+.programa-card.invierno {
+  border-left-color: #3B82F6;
+}
+.programa-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.programa-icon {
+  font-size: 2rem;
+}
+.programa-info {
+  flex: 1;
+}
+.programa-info h3 {
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.programa-info p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.programa-badge {
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+.programa-badge.abierto {
+  background: rgba(122,185,41,0.15);
+  color: var(--green);
+}
+.programa-badge.proximo {
+  background: rgba(59,130,246,0.15);
+  color: #3B82F6;
+}
+.programa-body {
+  margin-bottom: 14px;
+}
+.programa-body p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+.programa-turnos {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.programa-turnos span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 /* Loading */
 .loading { display: flex; align-items: center; justify-content: center; padding: 40px; }
 .spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top-color: var(--violet); border-radius: 50%; animation: spin 1s linear infinite; }
@@ -1191,10 +1546,23 @@ h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; font-weight: 800; }
 <!-- ==================== PORTAL ==================== -->
 <div id="portal" class="portal">
   <header class="portal-header">
-    <div class="logo-badge"><img src="logo.png" alt="Rainero"><span>Culinaria</span></div>
-    <div class="logo-badge"><img src="logo_mvl.png" alt="MVL"></div>
+    <div class="brand-main">
+      <img src="logo.png" alt="Rainero" class="brand-logo-sm">
+      <div class="brand-text">
+        <span class="brand-name">Rainero Culinaria</span>
+        <span class="brand-version">4.0</span>
+      </div>
+    </div>
+    <div class="header-right-kids">
+      <div class="edu-badge-kids" title="Vicente López - Distrito Google">
+        <span>🎓</span>
+      </div>
+      <img src="logo_mvl.png" alt="Vivamos Vicente López" class="mvl-logo" onclick="showDevAccess()">
+    </div>
   </header>
+  
   <main class="portal-content">
+    <div class="product-badge">Programa especial</div>
     <img src="logo.png" alt="Rainero Kids" class="hero-logo">
     <div class="hero-title"><h1>Rainero Kids</h1><p>Aprende a cocinar jugando 🍳</p></div>
     <div class="portal-grid">
@@ -1204,7 +1572,109 @@ h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; font-weight: 800; }
       <div class="avatar-card docente" onclick="showLogin('docente')"><div class="avatar-illustration"><svg><use href="#avatar-docente"/></svg></div><h3>Profes</h3><p>Gestión</p><span class="age-badge">📚 Admin</span></div>
     </div>
   </main>
-  <footer class="portal-footer"><p>Centro Municipal de Capacitación Laboral Santiago Rainero</p></footer>
+  
+  <footer class="portal-footer">
+    <p>Centro Municipal de Capacitación Laboral Santiago Rainero</p>
+    <p class="footer-edu">🎓 Vicente López · Distrito Google · Educación Digital</p>
+    <p class="footer-dev">Desarrollado por Mercedes Recalde · Sistema Recalde</p>
+  </footer>
+</div>
+
+<!-- ==================== DEV ACCESS ==================== -->
+<div id="dev-access" class="modal-overlay hidden" onclick="closeDevAccess()">
+  <div class="modal" onclick="event.stopPropagation()" style="max-width:380px">
+    <div class="modal-header"><h2>🔐 Acceso Desarrollador</h2><button class="modal-close" onclick="closeDevAccess()"><svg><use href="#icon-x"/></svg></button></div>
+    <div class="modal-body">
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:20px">Panel exclusivo para la administración del ecosistema Rainero Culinaria 4.0</p>
+      <div class="form-group"><label>Email de desarrollador</label><input type="email" class="form-input" id="dev-email" placeholder="dev@sistemarecalde.com"></div>
+      <div class="form-group"><label>Clave maestra</label><input type="password" class="form-input" id="dev-pass" placeholder="••••••••"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" style="background:linear-gradient(135deg,#1E293B,#334155);color:white" onclick="loginDev()">🚀 Ingresar al Panel Dev</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== DEV PANEL ==================== -->
+<div id="app-dev" class="app-shell hidden">
+  <header class="app-header" style="background:linear-gradient(135deg,#1E293B,#334155)">
+    <button class="header-back" onclick="showPortal()" style="background:rgba(255,255,255,0.1)"><svg><use href="#icon-back"/></svg></button>
+    <h1 class="header-title" style="color:white">🚀 Panel Desarrollador</h1>
+    <span style="background:#7AB929;color:white;padding:4px 10px;border-radius:20px;font-size:0.7rem;font-weight:700">DEV</span>
+  </header>
+  <main class="app-main">
+    <div class="dev-welcome">
+      <h2>Bienvenida, Mercedes 👩‍💻</h2>
+      <p>Ecosistema Rainero Culinaria 4.0</p>
+    </div>
+    
+    <div class="dev-stats">
+      <div class="dev-stat"><span class="dev-stat-value">1</span><span class="dev-stat-label">Productos</span></div>
+      <div class="dev-stat"><span class="dev-stat-value">4</span><span class="dev-stat-label">Módulos</span></div>
+      <div class="dev-stat"><span class="dev-stat-value">42</span><span class="dev-stat-label">Usuarios</span></div>
+    </div>
+    
+    <section class="section">
+      <div class="section-header"><h2 class="section-title">🏗️ Productos del Ecosistema</h2></div>
+      <div class="dev-product active">
+        <div class="dev-product-header">
+          <span class="dev-product-icon">👶</span>
+          <div class="dev-product-info">
+            <h4>Rainero Kids</h4>
+            <p>Gamificación infantil</p>
+          </div>
+          <span class="dev-status live">LIVE</span>
+        </div>
+        <div class="dev-product-stats">
+          <span>👧 24 Kids</span>
+          <span>🎮 18 Teens</span>
+          <span>👨‍👩‍👧 15 Familias</span>
+          <span>👩‍🏫 3 Docentes</span>
+        </div>
+      </div>
+      
+      <div class="dev-product">
+        <div class="dev-product-header">
+          <span class="dev-product-icon">🎓</span>
+          <div class="dev-product-info">
+            <h4>Rainero Culinaria</h4>
+            <p>Sistema principal</p>
+          </div>
+          <span class="dev-status">ACTIVO</span>
+        </div>
+      </div>
+      
+      <div class="dev-product coming">
+        <div class="dev-product-header">
+          <span class="dev-product-icon">🏆</span>
+          <div class="dev-product-info">
+            <h4>Rainero Competencias</h4>
+            <p>Torneos y eventos</p>
+          </div>
+          <span class="dev-status planned">PLANEADO</span>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section">
+      <div class="section-header"><h2 class="section-title">⚙️ Configuración Global</h2></div>
+      <div class="dev-actions">
+        <button class="dev-action" onclick="showToast('📊 Exportando datos...')"><span>📊</span>Exportar Datos</button>
+        <button class="dev-action" onclick="showToast('🔄 Sincronizando...')"><span>🔄</span>Sync Supabase</button>
+        <button class="dev-action" onclick="showToast('📧 Enviando...')"><span>📧</span>Email Masivo</button>
+        <button class="dev-action" onclick="showToast('📈 Generando...')"><span>📈</span>Reportes</button>
+      </div>
+    </section>
+    
+    <section class="section">
+      <div class="section-header"><h2 class="section-title">📝 Inscripciones Pendientes</h2></div>
+      <div class="dev-inscripciones">
+        <div class="dev-inscripcion"><span>👧 Valentina García</span><span>Kids - Mañana</span><button onclick="showToast('✅ Aprobada')">Aprobar</button></div>
+        <div class="dev-inscripcion"><span>👦 Tomás López</span><span>Teens - Tarde</span><button onclick="showToast('✅ Aprobada')">Aprobar</button></div>
+        <div class="dev-inscripcion"><span>👧 Sofía Martínez</span><span>Kids - Tarde</span><button onclick="showToast('✅ Aprobada')">Aprobar</button></div>
+      </div>
+    </section>
+  </main>
 </div>
 
 <!-- ==================== LOGINS ==================== -->
@@ -1286,6 +1756,17 @@ h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; font-weight: 800; }
         <div class="streak-days"><span class="streak-day done">L</span><span class="streak-day done">M</span><span class="streak-day done">X</span><span class="streak-day done">J</span><span class="streak-day done">V</span><span class="streak-day today">S</span><span class="streak-day">D</span></div>
       </div>
     </div>
+    
+    <!-- BANNER INSCRIPCIONES KIDS -->
+    <div class="banner-inscripcion verano" id="banner-inscripcion-kids" onclick="showToast('📝 Pedile a tus papás que te inscriban!')" style="display:none;">
+      <img src="logo.png" alt="Vicente" class="banner-mascot">
+      <div class="banner-content">
+        <h3 id="banner-titulo">☀️ ¡Vacaciones de Verano!</h3>
+        <p id="banner-info">Febrero · 2 clases · 10 a 12 hs</p>
+        <span class="banner-recetas" id="banner-recetas">🍪 Figacitas · Bizcochitos · Alfajores · Cookies</span>
+      </div>
+      <div class="banner-arrow">→</div>
+    </div>
     <div class="stats-grid">
       <div class="stat-card xp"><div class="stat-icon"><svg><use href="#icon-zap"/></svg></div><div class="stat-value">1,250</div><div class="stat-label">XP</div></div>
       <div class="stat-card recipes"><div class="stat-icon"><svg><use href="#icon-book"/></svg></div><div class="stat-value" id="recipes-count">0</div><div class="stat-label">Recetas</div></div>
@@ -1363,6 +1844,45 @@ h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; font-weight: 800; }
         <div class="message-card unread"><div class="message-avatar docente">👩‍🏫</div><div class="message-content"><h4>Profe María</h4><p>¡Martina hizo unos cupcakes increíbles hoy! Adjunto foto...</p></div><div class="message-time">Hoy</div></div>
         <div class="message-card unread"><div class="message-avatar docente">👩‍🏫</div><div class="message-content"><h4>Profe María</h4><p>Recordatorio: mañana traer delantal y gorro de chef</p></div><div class="message-time">Ayer</div></div>
         <div class="message-card"><div class="message-avatar docente">👩‍🏫</div><div class="message-content"><h4>Profe María</h4><p>Bienvenidos al programa de verano 2025! Les comparto...</p></div><div class="message-time">15 Dic</div></div>
+      </div>
+    </section>
+    
+    <!-- INSCRIPCIONES -->
+    <section class="section">
+      <div class="section-header"><h2 class="section-title"><svg><use href="#icon-star"/></svg>Inscribir a mis hijos</h2></div>
+      
+      <div class="programa-card verano">
+        <div class="programa-header">
+          <div class="programa-icon">☀️</div>
+          <div class="programa-info">
+            <h3>Programa Verano 2025</h3>
+            <p>15 Dic 2024 - 28 Feb 2025</p>
+          </div>
+          <span class="programa-badge abierto">Abierto</span>
+        </div>
+        <div class="programa-body">
+          <p>Clases de cocina para niños y adolescentes durante las vacaciones de verano.</p>
+          <div class="programa-turnos">
+            <span>🕐 Turno Mañana: 9:00 - 12:00</span>
+            <span>🕐 Turno Tarde: 14:00 - 17:00</span>
+          </div>
+        </div>
+        <button class="btn btn-green" onclick="openInscripcion('verano')">📝 Inscribir a mi hijo/a</button>
+      </div>
+      
+      <div class="programa-card invierno">
+        <div class="programa-header">
+          <div class="programa-icon">❄️</div>
+          <div class="programa-info">
+            <h3>Programa Invierno 2025</h3>
+            <p>7 Jul - 25 Jul 2025</p>
+          </div>
+          <span class="programa-badge proximo">Próximamente</span>
+        </div>
+        <div class="programa-body">
+          <p>Recetas abrigadas y técnicas especiales para el invierno.</p>
+        </div>
+        <button class="btn btn-ghost" disabled>🔒 Inscripciones en Junio</button>
       </div>
     </section>
   </main>
@@ -1519,7 +2039,42 @@ h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; font-weight: 800; }
       <div class="stat-card badges"><div class="stat-icon"><svg><use href="#icon-trophy"/></svg></div><div class="stat-value">15</div><div class="stat-label">Logros</div></div>
       <div class="stat-card streak"><div class="stat-icon"><svg><use href="#icon-flame"/></svg></div><div class="stat-value">12</div><div class="stat-label">Racha</div></div>
     </div>
+    
+    <!-- BANNER INSCRIPCIONES -->
+    <div class="banner-inscripcion verano" id="banner-inscripcion-teens" onclick="showToast('📝 Inscripción próximamente!')" style="display:none;">
+      <img src="logo.png" alt="Vicente" class="banner-mascot">
+      <div class="banner-content">
+        <h3 id="banner-titulo-teens">☀️ ¡Vacaciones de Verano!</h3>
+        <p id="banner-info-teens">Febrero · 2 clases · 10 a 12 hs</p>
+        <span class="banner-recetas" id="banner-recetas-teens">🍪 Figacitas · Bizcochitos · Alfajores · Cookies</span>
+      </div>
+      <div class="banner-arrow">→</div>
+    </div>
+    
     <section class="section"><div class="section-header"><h2 class="section-title"><svg><use href="#icon-book"/></svg>Recetas</h2></div><div class="recipe-grid" id="teens-recipes-grid"></div></section>
+    
+    <!-- CONTENIDO EDUCATIVO TEENS -->
+    <section class="section">
+      <div class="section-header"><h2 class="section-title"><svg><use href="#icon-play"/></svg>Aprende</h2></div>
+      <div class="content-grid">
+        <div class="content-card video" onclick="showToast('📹 Reproduciendo...')">
+          <div class="content-thumb" style="background:var(--grad-violet)">📹<span class="duration">5:32</span></div>
+          <div class="content-info"><h4>Higiene Pro</h4><p>🧼 Nivel avanzado</p></div>
+        </div>
+        <div class="content-card video" onclick="showToast('📹 Reproduciendo...')">
+          <div class="content-thumb" style="background:var(--grad-teal)">📹<span class="duration">7:20</span></div>
+          <div class="content-info"><h4>Técnicas de Corte</h4><p>🔪 Seguridad</p></div>
+        </div>
+        <div class="content-card" onclick="showToast('📊 Abriendo...')">
+          <div class="content-thumb" style="background:var(--grad-green)">📊</div>
+          <div class="content-info"><h4>Macronutrientes</h4><p>💪 Infografía</p></div>
+        </div>
+        <div class="content-card" onclick="showToast('📓 Abriendo...')">
+          <div class="content-thumb" style="background:linear-gradient(135deg,#F59E0B,#D97706)">📓</div>
+          <div class="content-info"><h4>Clase 1</h4><p>📓 NotebookLM</p></div>
+        </div>
+      </div>
+    </section>
   </main>
   <nav class="app-nav">
     <button class="nav-item active"><svg><use href="#icon-home"/></svg>Inicio</button>
@@ -1564,12 +2119,33 @@ h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; font-weight: 800; }
 
 <div id="toast" class="toast"></div>
 
+<!-- MODAL INSCRIPCION -->
+<div id="inscripcion-modal" class="modal-overlay hidden" onclick="closeInscripcion()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header"><h2>📝 Inscripción Verano 2025</h2><button class="modal-close" onclick="closeInscripcion()"><svg><use href="#icon-x"/></svg></button></div>
+    <div class="modal-body">
+      <div class="form-group"><label>Nombre del niño/a *</label><input type="text" class="form-input" id="insc-nombre" placeholder="Nombre completo"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="form-group"><label>Edad *</label><input type="number" class="form-input" id="insc-edad" placeholder="Ej: 8"></div>
+        <div class="form-group"><label>Grupo</label><select class="form-input" id="insc-grupo"><option value="kids">Kids (6-11)</option><option value="teens">Teens (12-17)</option></select></div>
+      </div>
+      <div class="form-group"><label>Turno preferido *</label><select class="form-input" id="insc-turno"><option value="manana">Mañana (9:00 - 12:00)</option><option value="tarde">Tarde (14:00 - 17:00)</option></select></div>
+      <div class="form-group"><label>Alergias o restricciones alimentarias</label><textarea class="form-input" id="insc-alergias" rows="2" placeholder="Ninguna / Celiaquía / etc."></textarea></div>
+      <div class="form-group"><label>Teléfono de contacto *</label><input type="tel" class="form-input" id="insc-telefono" placeholder="11-1234-5678"></div>
+      <div class="form-group"><label>Email de contacto *</label><input type="email" class="form-input" id="insc-email" placeholder="padre@email.com"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-green" onclick="enviarInscripcion()">✅ Confirmar Inscripción</button>
+    </div>
+  </div>
+</div>
+
 <script>
 const SUPABASE_URL = 'https://dukgjrhyhyxvdqzhthje.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_hdrC91CO7zGc3uoO2MsMVA_6K_CQmgd';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR1a2dqcmh5aHl4dmRxemh0aGplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5MTQzNjIsImV4cCI6MjA4MzQ5MDM2Mn0.JYZWv2vYwMbTopyL-T8_kjbX2py5IL7Ap6ASZc2B4dM';
 
-let db = null;
-try { db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY); console.log('✅ Supabase conectado'); } catch(e) { console.log('⚠️ Sin Supabase'); }
+let supabase = null;
+try { supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY); console.log('✅ Supabase conectado'); } catch(e) { console.log('⚠️ Sin Supabase'); }
 
 let recipes = [];
 const defaultRecipes = [
@@ -1630,8 +2206,8 @@ function login(type) {
 
 async function loadRecipes() {
   try {
-    if (db) {
-      const { data, error } = await db.from('recipes').select('*').order('id');
+    if (supabase) {
+      const { data, error } = await supabase.from('recipes').select('*').order('id');
       if (!error && data && data.length > 0) { recipes = data; console.log('✅ Recetas:', recipes.length); }
       else { recipes = defaultRecipes; }
     } else { recipes = defaultRecipes; }
@@ -1703,7 +2279,7 @@ async function saveRecipe() {
   if (!steps) { showToast('❌ Agregá los pasos'); return; }
   const newRecipe = { title, time_minutes: time, points, difficulty, emoji, category: 'general' };
   try {
-    if (db) { const { data, error } = await db.from('recipes').insert(newRecipe).select().single(); if (error) throw error; showToast('✅ Receta guardada!'); }
+    if (supabase) { const { data, error } = await supabase.from('recipes').insert(newRecipe).select().single(); if (error) throw error; showToast('✅ Receta guardada!'); }
     else { newRecipe.id = Date.now(); newRecipe.ingredients = ingredients.split('\n'); newRecipe.steps = steps.split('\n'); recipes.unshift(newRecipe); showToast('✅ Guardada localmente'); }
     await loadRecipes();
     closeRecipeForm();
@@ -1726,7 +2302,102 @@ function showContentTab(tab) {
   document.getElementById('content-' + tab).classList.remove('hidden');
 }
 
+function openInscripcion(programa) {
+  document.getElementById('inscripcion-modal').classList.remove('hidden');
+}
+
+function closeInscripcion() {
+  document.getElementById('inscripcion-modal').classList.add('hidden');
+}
+
+function enviarInscripcion() {
+  const nombre = document.getElementById('insc-nombre').value.trim();
+  const edad = document.getElementById('insc-edad').value;
+  const telefono = document.getElementById('insc-telefono').value.trim();
+  const email = document.getElementById('insc-email').value.trim();
+  
+  if (!nombre || !edad || !telefono || !email) {
+    showToast('❌ Completá todos los campos obligatorios');
+    return;
+  }
+  
+  showToast('✅ ¡Inscripción enviada! Te contactaremos pronto');
+  closeInscripcion();
+  
+  // Limpiar form
+  ['insc-nombre', 'insc-edad', 'insc-telefono', 'insc-email', 'insc-alergias'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+}
+
 function showToast(msg) { const toast = document.getElementById('toast'); toast.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3000); }
+
+// Dev Panel
+let devClicks = 0;
+function showDevAccess() {
+  devClicks++;
+  if (devClicks >= 3) {
+    document.getElementById('dev-access').classList.remove('hidden');
+    devClicks = 0;
+  }
+}
+
+function closeDevAccess() {
+  document.getElementById('dev-access').classList.add('hidden');
+}
+
+function loginDev() {
+  const email = document.getElementById('dev-email').value.trim();
+  const pass = document.getElementById('dev-pass').value;
+  
+  // Credenciales de desarrollo (podés cambiarlas)
+  if (email === 'mercedes@sistemarecalde.com' && pass === 'dev2025') {
+    hideAll();
+    document.getElementById('app-dev').classList.remove('hidden');
+    closeDevAccess();
+    showToast('🚀 Bienvenida al Panel Dev!');
+  } else {
+    showToast('❌ Credenciales incorrectas');
+  }
+}
+
+// Cargar configuración de inscripciones desde Supabase
+async function loadInscripcionesConfig() {
+  try {
+    const { data, error } = await supabase
+      .from('inscripciones_config')
+      .select('*')
+      .eq('programa', 'kids')
+      .single();
+    
+    if (error) throw error;
+    
+    if (data && data.activa) {
+      // Mostrar banners
+      const bannerKids = document.getElementById('banner-inscripcion-kids');
+      const bannerTeens = document.getElementById('banner-inscripcion-teens');
+      
+      if (bannerKids) {
+        bannerKids.style.display = 'flex';
+        document.getElementById('banner-titulo').textContent = '☀️ ¡' + data.titulo + '!';
+        document.getElementById('banner-info').textContent = data.periodo + ' · ' + data.clases + ' · ' + data.horario;
+        document.getElementById('banner-recetas').textContent = '🍪 ' + data.recetas;
+      }
+      
+      if (bannerTeens) {
+        bannerTeens.style.display = 'flex';
+        document.getElementById('banner-titulo-teens').textContent = '☀️ ¡' + data.titulo + '!';
+        document.getElementById('banner-info-teens').textContent = data.periodo + ' · ' + data.clases + ' · ' + data.horario;
+        document.getElementById('banner-recetas-teens').textContent = '🍪 ' + data.recetas;
+      }
+    }
+  } catch (e) {
+    console.log('Inscripciones no disponibles:', e.message);
+  }
+}
+
+// Cargar inscripciones al inicio
+loadInscripcionesConfig();
 
 showPortal();
 </script>
