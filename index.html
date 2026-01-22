@@ -2141,14 +2141,23 @@ h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; font-weight: 800; }
 </div>
 
 <script>
-const SUPABASE_URL = 'https://dukgjrhyhyxvdqzhthje.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR1a2dqcmh5aHl4dmRxemh0aGplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5MTQzNjIsImV4cCI6MjA4MzQ5MDM2Mn0.JYZWv2vYwMbTopyL-T8_kjbX2py5IL7Ap6ASZc2B4dM';
+var SUPABASE_URL = 'https://dukgjrhyhyxvdqzhthje.supabase.co';
+var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR1a2dqcmh5aHl4dmRxemh0aGplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc5MTQzNjIsImV4cCI6MjA4MzQ5MDM2Mn0.JYZWv2vYwMbTopyL-T8_kjbX2py5IL7Ap6ASZc2B4dM';
 
-let supabase = null;
-try { supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY); console.log('✅ Supabase conectado'); } catch(e) { console.log('⚠️ Sin Supabase'); }
+var supabase = null;
+try { 
+  if (window.supabase && window.supabase.createClient) {
+    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY); 
+    console.log('✅ Supabase conectado'); 
+  } else {
+    console.log('⚠️ Supabase no disponible');
+  }
+} catch(e) { 
+  console.log('⚠️ Sin Supabase:', e.message); 
+}
 
-let recipes = [];
-const defaultRecipes = [
+var recipes = [];
+var defaultRecipes = [
   {id:1, title:'Cupcakes de Vainilla', emoji:'🧁', time_minutes:30, difficulty:'easy', points:50, ingredients:['2 tazas harina','1 taza azúcar','2 huevos','1/2 taza manteca'], steps:['Precalentar horno 180°C','Mezclar secos','Agregar húmedos','Hornear 25 min']},
   {id:2, title:'Galletas con Chips', emoji:'🍪', time_minutes:25, difficulty:'easy', points:40, ingredients:['2 tazas harina','1 taza chips chocolate','1 huevo'], steps:['Mezclar manteca y azúcar','Agregar huevo','Incorporar harina','Hornear 12 min']},
   {id:3, title:'Mini Pizzas', emoji:'🍕', time_minutes:45, difficulty:'medium', points:80, ingredients:['Masa','Salsa tomate','Mozzarella','Jamón'], steps:['Estirar masa','Agregar salsa','Poner queso','Hornear 15 min']},
@@ -2157,7 +2166,7 @@ const defaultRecipes = [
   {id:6, title:'Tacos Caseros', emoji:'🌮', time_minutes:40, difficulty:'medium', points:70, ingredients:['Tortillas','Carne','Lechuga'], steps:['Cocinar carne','Calentar tortillas','Armar tacos']}
 ];
 
-const gradients = [
+var gradients = [
   'linear-gradient(135deg, #7AB929, #5A8A1F)',
   'linear-gradient(135deg, #7B2D8E, #5A1F6A)',
   'linear-gradient(135deg, #00A19A, #007A75)',
@@ -2193,15 +2202,27 @@ async function registerDocente() {
 }
 
 function login(type) {
-  const nameInput = document.getElementById(type + '-name-input');
-  const name = nameInput ? nameInput.value || 'Chef' : 'Chef';
-  hideAll();
-  document.getElementById('app-' + type).classList.remove('hidden');
-  const playerNameEl = document.getElementById('player-name');
-  if (playerNameEl) playerNameEl.textContent = name;
-  const teensNameEl = document.getElementById('teens-player-name');
-  if (teensNameEl && type === 'teens') teensNameEl.textContent = name;
-  loadRecipes();
+  try {
+    var nameInput = document.getElementById(type + '-name-input');
+    var name = nameInput ? (nameInput.value || 'Chef') : 'Chef';
+    hideAll();
+    var appEl = document.getElementById('app-' + type);
+    if (appEl) {
+      appEl.classList.remove('hidden');
+    } else {
+      console.error('No se encontró app-' + type);
+      showPortal();
+      return;
+    }
+    var playerNameEl = document.getElementById('player-name');
+    if (playerNameEl) playerNameEl.textContent = name;
+    var teensNameEl = document.getElementById('teens-player-name');
+    if (teensNameEl && type === 'teens') teensNameEl.textContent = name;
+    loadRecipes();
+  } catch(e) {
+    console.error('Error en login:', e);
+    alert('Error al ingresar. Intentá de nuevo.');
+  }
 }
 
 async function loadRecipes() {
